@@ -1,0 +1,39 @@
+\chapter{ExtFsr - Recognizer}
+\label{cha:extfsrTests}
+
+%----------
+\section{Initial position}
+ExtFsr, the file system recognizer, is based on an existing ext2 recognizer. The driver consists of only two files with some lines of code which were already tested.
+
+%----------
+\section{Development}
+After the hardest part, understanding the system and driver programming, it was not a big deal to decide if the partition contains a ext2 or an ext3 file system. This can be decided by an attribute of an already available structure.
+
+%----------
+\section{Tests}
+Due to the simplicity of this new functionality to load different drivers depending on the file system, there was no need of a large test. The following tests were done successfully:
+\begin{itemize}
+  \item Load the appropriate driver.
+  \item Fallback to the ext2 driver if the ext3 driver is not present or failed to load.
+  \item Unload the recognizer if both driver either are loaded or failed to load.
+\end{itemize}
+
+\chapter{Ext2Fsd - File system driver}
+\label{cha:ext2fsdTests}
+
+%----------
+\section{Overview}
+During the development of the create and write routines the Windows bluescreens never were overcome. So the driver did not reach a state in which it would have been useful to make serious tests.
+
+Serious tests in this context would be:
+\begin{itemize}
+\item Performance tests (number of files written to disk in a specific time)
+\item Stability tests which includes
+	\begin{itemize}
+	\item Behaviour in case of a system crash
+	\item Behaviour when multiple application try to write simultaneously.
+	\end{itemize}
+\item Accuracy tests (does the driver any mistakes when processing create or write requests.
+\end{itemize}
+
+The only tests which has been done were debugging the driver step-by-step and watching the values of the variables until a bluescreen appeared. So it could be seen where the driver runs through and could be understood bit by bit what was executed on which request. This was very time consuming and unfortunately not as easy as debugging a user mode application.

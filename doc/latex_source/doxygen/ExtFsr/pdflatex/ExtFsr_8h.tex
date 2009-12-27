@@ -1,0 +1,159 @@
+\hypertarget{ExtFsr_8h}{
+\subsection{Ext\-Fsr.h File Reference}
+\label{ExtFsr_8h}\index{ExtFsr.h@{ExtFsr.h}}
+}
+
+
+\subsubsection{Detailed Description}
+Headerfile for \hyperlink{ExtFsr_8c}{Ext\-Fsr.c}.
+
+This file contains structures, constants and function prototypes used by \hyperlink{ExtFsr_8c}{Ext\-Fsr.c}.
+
+{\tt \#include $<$ntdddisk.h$>$}\par
+\subsubsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{struct__ExtFsrDeviceExtension}{\_\-Ext\-Fsr\-Device\-Extension}
+\begin{CompactList}\small\item\em Device extension structure.\item\end{CompactList}\item 
+struct \hyperlink{struct__LOAD__STATUS}{\_\-LOAD\_\-STATUS}
+\begin{CompactList}\small\item\em Load status structure.\item\end{CompactList}\item 
+struct \hyperlink{structext3__super__block}{ext3\_\-super\_\-block}
+\begin{CompactList}\small\item\em Ext3 structure taken from linux source.\item\end{CompactList}\end{CompactItemize}
+\subsubsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef \hyperlink{struct__LOAD__STATUS}{\_\-LOAD\_\-STATUS} \hyperlink{ExtFsr_8h_a10}{LOAD\_\-STATUS}
+\begin{CompactList}\small\item\em Load status structure.\item\end{CompactList}\item 
+typedef \hyperlink{struct__LOAD__STATUS}{\_\-LOAD\_\-STATUS} $\ast$ \hyperlink{ExtFsr_8h_a11}{PLOAD\_\-STATUS}
+\begin{CompactList}\small\item\em Load status structure.\item\end{CompactList}\item 
+typedef \hyperlink{struct__ExtFsrDeviceExtension}{\_\-Ext\-Fsr\-Device\-Extension} \hyperlink{ExtFsr_8h_a12}{Ext\-Fsr\-Device\-Extension}
+\begin{CompactList}\small\item\em Device extension structure.\item\end{CompactList}\item 
+typedef \hyperlink{struct__ExtFsrDeviceExtension}{\_\-Ext\-Fsr\-Device\-Extension} $\ast$ \hyperlink{ExtFsr_8h_a13}{DEVICE\_\-EXTENSION}
+\begin{CompactList}\small\item\em Device extension structure.\item\end{CompactList}\end{CompactItemize}
+\subsubsection*{Functions}
+\begin{CompactItemize}
+\item 
+NTSTATUS \hyperlink{ExtFsr_8h_a15}{Read\-Disk} (IN PDEVICE\_\-OBJECT Device\-Object, IN LONGLONG Offset, IN ULONG Length, OUT PVOID Buffer)
+\begin{CompactList}\small\item\em Reads data from physical disk into memory.\item\end{CompactList}\item 
+PEXT3\_\-SUPER\_\-BLOCK \hyperlink{ExtFsr_8h_a16}{Load\-Super\-Block} (IN PDEVICE\_\-OBJECT Device\-Object)
+\begin{CompactList}\small\item\em Loads super block from disk.\item\end{CompactList}\item 
+VOID \hyperlink{ExtFsr_8h_a17}{Ext\-Fsr\-Unload} (IN PDRIVER\_\-OBJECT Device\-Object)
+\begin{CompactList}\small\item\em Unload function.\item\end{CompactList}\item 
+NTSTATUS \hyperlink{ExtFsr_8h_a18}{File\-System\-Control} (IN PDEVICE\_\-OBJECT Device\-Object, IN PIRP Irp)
+\begin{CompactList}\small\item\em Manage mount requests and loads file system drivers.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Typedef Documentation}
+\index{DEVICE_EXTENSION@{DEVICE\_\-EXTENSION}!ExtFsr.h@{ExtFsr.h}}\index{ExtFsr.h@{ExtFsr.h}!DEVICE_EXTENSION@{DEVICE\_\-EXTENSION}}\hypertarget{ExtFsr_8h_a13}{
+\index{ExtFsr.h@{Ext\-Fsr.h}!DEVICE_EXTENSION@{DEVICE\_\-EXTENSION}}
+\index{DEVICE_EXTENSION@{DEVICE\_\-EXTENSION}!ExtFsr.h@{Ext\-Fsr.h}}
+\paragraph[DEVICE\_\-EXTENSION]{\setlength{\rightskip}{0pt plus 5cm}typedef struct \hyperlink{struct__ExtFsrDeviceExtension}{\_\-Ext\-Fsr\-Device\-Extension} $\ast$ DEVICE\_\-EXTENSION}\hfill}
+\label{ExtFsr_8h_a13}
+
+
+Device extension structure.
+
+Structure to store persistent values that are needed by a later IRP request. \index{ExtFsrDeviceExtension@{ExtFsrDeviceExtension}!ExtFsr.h@{ExtFsr.h}}\index{ExtFsr.h@{ExtFsr.h}!ExtFsrDeviceExtension@{ExtFsrDeviceExtension}}\hypertarget{ExtFsr_8h_a12}{
+\index{ExtFsr.h@{Ext\-Fsr.h}!ExtFsrDeviceExtension@{ExtFsrDeviceExtension}}
+\index{ExtFsrDeviceExtension@{ExtFsrDeviceExtension}!ExtFsr.h@{Ext\-Fsr.h}}
+\paragraph[ExtFsrDeviceExtension]{\setlength{\rightskip}{0pt plus 5cm}typedef struct \hyperlink{struct__ExtFsrDeviceExtension}{\_\-Ext\-Fsr\-Device\-Extension}  Ext\-Fsr\-Device\-Extension}\hfill}
+\label{ExtFsr_8h_a12}
+
+
+Device extension structure.
+
+Structure to store persistent values that are needed by a later IRP request. \index{LOAD_STATUS@{LOAD\_\-STATUS}!ExtFsr.h@{ExtFsr.h}}\index{ExtFsr.h@{ExtFsr.h}!LOAD_STATUS@{LOAD\_\-STATUS}}\hypertarget{ExtFsr_8h_a10}{
+\index{ExtFsr.h@{Ext\-Fsr.h}!LOAD_STATUS@{LOAD\_\-STATUS}}
+\index{LOAD_STATUS@{LOAD\_\-STATUS}!ExtFsr.h@{Ext\-Fsr.h}}
+\paragraph[LOAD\_\-STATUS]{\setlength{\rightskip}{0pt plus 5cm}typedef struct \hyperlink{struct__LOAD__STATUS}{\_\-LOAD\_\-STATUS}  LOAD\_\-STATUS}\hfill}
+\label{ExtFsr_8h_a10}
+
+
+Load status structure.
+
+Structure to store loaded and failed statuses of the drivers. \index{PLOAD_STATUS@{PLOAD\_\-STATUS}!ExtFsr.h@{ExtFsr.h}}\index{ExtFsr.h@{ExtFsr.h}!PLOAD_STATUS@{PLOAD\_\-STATUS}}\hypertarget{ExtFsr_8h_a11}{
+\index{ExtFsr.h@{Ext\-Fsr.h}!PLOAD_STATUS@{PLOAD\_\-STATUS}}
+\index{PLOAD_STATUS@{PLOAD\_\-STATUS}!ExtFsr.h@{Ext\-Fsr.h}}
+\paragraph[PLOAD\_\-STATUS]{\setlength{\rightskip}{0pt plus 5cm}typedef struct \hyperlink{struct__LOAD__STATUS}{\_\-LOAD\_\-STATUS} $\ast$ PLOAD\_\-STATUS}\hfill}
+\label{ExtFsr_8h_a11}
+
+
+Load status structure.
+
+Structure to store loaded and failed statuses of the drivers. 
+
+\subsubsection{Function Documentation}
+\index{ExtFsrUnload@{ExtFsrUnload}!ExtFsr.h@{ExtFsr.h}}\index{ExtFsr.h@{ExtFsr.h}!ExtFsrUnload@{ExtFsrUnload}}\hypertarget{ExtFsr_8h_a17}{
+\index{ExtFsr.h@{Ext\-Fsr.h}!ExtFsrUnload@{ExtFsrUnload}}
+\index{ExtFsrUnload@{ExtFsrUnload}!ExtFsr.h@{Ext\-Fsr.h}}
+\paragraph[ExtFsrUnload]{\setlength{\rightskip}{0pt plus 5cm}VOID Ext\-Fsr\-Unload (IN PDRIVER\_\-OBJECT {\em Driver\-Object})}\hfill}
+\label{ExtFsr_8h_a17}
+
+
+Unload function.
+
+This function cleans up reserved resources if this driver is no longer in use.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Driver\-Object}]Points to the next-lower driver's device object representing the target device for the read operation. \end{description}
+\end{Desc}
+\index{FileSystemControl@{FileSystemControl}!ExtFsr.h@{ExtFsr.h}}\index{ExtFsr.h@{ExtFsr.h}!FileSystemControl@{FileSystemControl}}\hypertarget{ExtFsr_8h_a18}{
+\index{ExtFsr.h@{Ext\-Fsr.h}!FileSystemControl@{FileSystemControl}}
+\index{FileSystemControl@{FileSystemControl}!ExtFsr.h@{Ext\-Fsr.h}}
+\paragraph[FileSystemControl]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS File\-System\-Control (IN PDEVICE\_\-OBJECT {\em Device\-Object}, IN PIRP {\em Irp})}\hfill}
+\label{ExtFsr_8h_a18}
+
+
+Manage mount requests and loads file system drivers.
+
+This function manages IRP\_\-MN\_\-MOUNT\_\-VOLUME and IRP\_\-MN\_\-LOAD\_\-FILE\_\-SYSTEM. If a ext3 file system is regocnized, it will try to load the ext3 driver. If that was not successfully, the next request of the higher level driver will try to load the ext2 file system.
+
+If ext2 and ext3 both either are loaded successfully or have failed to load, the file system recognizer unloads itself.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Device\-Object}]Points to the next-lower driver's device object representing the target device for the read operation. \item[{\em Irp}]I/O request packet. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the routine succeeds, it must return STATUS\_\-SUCCESS. Otherwise, it must return one of the error status values defined in ntstatus.h. \end{Desc}
+\index{LoadSuperBlock@{LoadSuperBlock}!ExtFsr.h@{ExtFsr.h}}\index{ExtFsr.h@{ExtFsr.h}!LoadSuperBlock@{LoadSuperBlock}}\hypertarget{ExtFsr_8h_a16}{
+\index{ExtFsr.h@{Ext\-Fsr.h}!LoadSuperBlock@{LoadSuperBlock}}
+\index{LoadSuperBlock@{LoadSuperBlock}!ExtFsr.h@{Ext\-Fsr.h}}
+\paragraph[LoadSuperBlock]{\setlength{\rightskip}{0pt plus 5cm}PEXT3\_\-SUPER\_\-BLOCK Load\-Super\-Block (IN PDEVICE\_\-OBJECT {\em Device\-Object})}\hfill}
+\label{ExtFsr_8h_a16}
+
+
+Loads super block from disk.
+
+This function allocates memory from nonpaged pool for the super block. The superblock is 1024 bytes and the sector size is 512 bytes. So we need two times the SECTOR\_\-SIZE. As an offset we also take two times SECTOR\_\-SIZE because the super block is the second block on a partition.
+
+If the call of Read\-Disk fails, the allocated memory will be freed and a null pointer will be returned. If a pointer to the buffer is returned, the allocated memory must be freed from calling function.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Device\-Object}]Device object of the mounted volume \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]PEXT3\_\-SUPER\_\-BLOCK \end{Desc}
+\index{ReadDisk@{ReadDisk}!ExtFsr.h@{ExtFsr.h}}\index{ExtFsr.h@{ExtFsr.h}!ReadDisk@{ReadDisk}}\hypertarget{ExtFsr_8h_a15}{
+\index{ExtFsr.h@{Ext\-Fsr.h}!ReadDisk@{ReadDisk}}
+\index{ReadDisk@{ReadDisk}!ExtFsr.h@{Ext\-Fsr.h}}
+\paragraph[ReadDisk]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Read\-Disk (IN PDEVICE\_\-OBJECT {\em Device\-Object}, IN LONGLONG {\em Offset}, IN ULONG {\em Length}, OUT PVOID {\em Buffer})}\hfill}
+\label{ExtFsr_8h_a15}
+
+
+Reads data from physical disk into memory.
+
+This function builds an IRP for a FSD request, calls the lower driver with this IRP and wait for the completion of this operation. The read data will be written to the Buffer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Device\-Object}]Points to the next-lower driver's device object representing the target device for the read operation. \item[{\em Offset}]Points to the offset on the disk to read from. \item[{\em Length}]Specifies the length, in bytes, of Buffer. \item[{\em Buffer}]Points to a buffer to receive data. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Status Status of the Operation \end{Desc}

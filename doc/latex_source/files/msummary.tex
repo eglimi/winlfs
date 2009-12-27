@@ -1,0 +1,29 @@
+\chapter*{Management Summary}
+\addcontentsline{toc}{chapter}{Management Summary}
+\setcounter{page}{4}
+
+\section*{Introduction}
+Windows is the most popular operating system (os) available today. Most companies and private users use Windows as their primary os. Besides Windows, there are other os's, like Linux, becoming more popular. Although other os's are eligible to use and suits better for certain purposes, most users cannot do without Windows, mostly because of interoperability problems.
+
+This interoperability problems are the main reason why most users still use Windows as their primary and only operating system. WinLFS cannot and is not intended to change this fact but gives users the opportunity to interact directly with the Linux operating system on a single desktop. WinLFS makes it therefore possible to use Windows and Linux a on single machine without having the trouble of not being able to access data stored on Linux. Namely, with WinLFS, Windows users are given the possibility to access and modify any files created on Linux within Windows or create new files on a Linux partition.
+
+The need of such a program like WinLFS arises because there is no built-in support in Windows to access those data. This means, there is no file system driver in Windows which supports file systems used on Linux. WinLFS is such a driver and supports Ext2 and Ext3 file systems.
+
+\section*{Starting Position}
+WinLFS is based on a continuing studies diploma thesis. The main purpose of this continuing studies thesis was to write a read-only driver for Windows which supports ext2 file systems. WinLFS extends this functionality by adding support for writing.
+
+\section*{Procedure}
+First problem was to find material on file system driver development. There are just a few people programming this kind of software and therefore, not much material or documentation is available. Second, file system driver development is very complicated and needs a lot of study prior to programming.
+
+For efficiency reasons, the project was cut into parts which could be developed separately. This idea should work for experienced driver programmer but not for inexperienced ones like the authors of WinLFS. For this reason, WinLFS was created using a technique called extreme programming. This has the great advantage of two people trying to solve the same problem at one time. Extreme programming worked best in this situation and it was more efficient than working on a problem alone.
+
+Because of its complexity, there was no point in trying to get the whole code working at once. For that, the code had do be programmed in little pieces which could be tested and merged if these tests were successful.
+
+\section*{Results}
+As mentioned above, the problem was more complex as thought at the beginning. What was planned is a file system driver which recognizes and handles ext2 and ext3 partitions correctly. Additionally, a file system recognizer and a driver unload function which works on Windows XP was planned. 
+
+The file system recognizer and the driver unload function work, the driver itself does not. The available time was not sufficient to implement all required functions.
+
+\section*{Outlook}
+This work was intended to provide a solution for the open source community to share Linux' ext2 and ext3 partitions with Windows. Even though this is a great idea, it is not recommended to finish this work during another semester thesis mainly due to the fact that already two semester thesis have worked on the code and it is unlikely for another team to understand everything which had been done so far in such a short time like one semester. 
+

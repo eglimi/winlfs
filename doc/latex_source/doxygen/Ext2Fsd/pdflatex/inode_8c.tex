@@ -1,0 +1,187 @@
+\hypertarget{inode_8c}{
+\subsection{inode.c File Reference}
+\label{inode_8c}\index{inode.c@{inode.c}}
+}
+
+
+\subsubsection{Detailed Description}
+Functions for inode operations.
+
+
+
+{\tt \#include \char`\"{}ext2.h\char`\"{}}\par
+{\tt \#include \char`\"{}io.h\char`\"{}}\par
+{\tt \#include \char`\"{}stdio.h\char`\"{}}\par
+{\tt \#include \char`\"{}stdlib.h\char`\"{}}\par
+{\tt \#include \char`\"{}string.h\char`\"{}}\par
+{\tt \#include \char`\"{}time.h\char`\"{}}\par
+\subsubsection*{Functions}
+\begin{CompactItemize}
+\item 
+NTSTATUS \hyperlink{inode_8c_a14}{Ext2Fsd\-Create\-Inode} (\hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context, PFSD\_\-VCB Vcb, PFSD\_\-FCB p\-Parent\-Fcb, ULONG Parent\-Inode\-Number, ULONG Type, ULONG File\-Attr, PUNICODE\_\-STRING File\-Name)
+\begin{CompactList}\small\item\em Creates new Inode on disk and makes Directory entry.\item\end{CompactList}\item 
+BOOLEAN \hyperlink{inode_8c_a15}{Ext2Fsd\-New\-Inode} (\hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context, PFSD\_\-VCB Vcb, ULONG Group\-Hint, ULONG Type, PULONG Inode\-Number)
+\begin{CompactList}\small\item\em Allocate a new Inode on the partition.\item\end{CompactList}\item 
+NTSTATUS \hyperlink{inode_8c_a16}{Ext2Fsd\-Add\-Entry} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context, IN PFSD\_\-VCB Vcb, IN PFSD\_\-FCB Dcb, IN ULONG File\-Type, IN ULONG Inode\-Number, IN PUNICODE\_\-STRING File\-Name)
+\begin{CompactList}\small\item\em Add a new directory entry.\item\end{CompactList}\item 
+BOOLEAN \hyperlink{inode_8c_a17}{Ext2Fsd\-Delete\-Inode} (\hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context, PFSD\_\-VCB Vcb, ULONG Inode, ULONG Type)
+\begin{CompactList}\small\item\em Free an inode on the disk.\item\end{CompactList}\item 
+NTSTATUS \hyperlink{inode_8c_a18}{Ext2Fsd\-Remove\-Entry} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context, IN PFSD\_\-VCB Vcb, IN PFSD\_\-FCB Dcb, IN ULONG Inode)
+\begin{CompactList}\small\item\em Remove a directory entry.\item\end{CompactList}\item 
+BOOLEAN \hyperlink{inode_8c_a19}{Ext2Fsd\-Save\-Group} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context, IN PFSD\_\-VCB Vcb)
+\begin{CompactList}\small\item\em Write group descriptor to the disk.\item\end{CompactList}\item 
+BOOLEAN \hyperlink{inode_8c_a20}{Ext2Fsd\-Save\-Inode} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context, IN PFSD\_\-VCB Vcb, IN ULONG Inode, IN inode\_\-t $\ast$inode)
+\begin{CompactList}\small\item\em Write inode to the disk.\item\end{CompactList}\item 
+BOOLEAN \hyperlink{inode_8c_a21}{Ext2Fsd\-Save\-Super} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context, IN PFSD\_\-VCB Vcb)
+\begin{CompactList}\small\item\em Write super block to the disk.\item\end{CompactList}\item 
+BOOLEAN \hyperlink{inode_8c_a22}{Ext2Fsd\-Get\-Inode\-Lba} (IN PFSD\_\-VCB vcb, IN ULONG inode, OUT PLONGLONG offset)
+\begin{CompactList}\small\item\em Get offset on physical partition.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Function Documentation}
+\index{Ext2FsdAddEntry@{Ext2FsdAddEntry}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdAddEntry@{Ext2FsdAddEntry}}\hypertarget{inode_8c_a16}{
+\index{inode.c@{inode.c}!Ext2FsdAddEntry@{Ext2FsdAddEntry}}
+\index{Ext2FsdAddEntry@{Ext2FsdAddEntry}!inode.c@{inode.c}}
+\paragraph[Ext2FsdAddEntry]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Ext2Fsd\-Add\-Entry (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context}, IN PFSD\_\-VCB {\em Vcb}, IN PFSD\_\-FCB {\em Dcb}, IN ULONG {\em File\-Type}, IN ULONG {\em Inode\-Number}, IN PUNICODE\_\-STRING {\em File\-Name})}\hfill}
+\label{inode_8c_a16}
+
+
+Add a new directory entry.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \item[{\em Vcb}]Volume control block \item[{\em Dcb}]Directory control block \item[{\em File\-Type}]Type of entry (file or directory) \item[{\em Inode\-Number}]Number of inode \item[{\em File\-Name}]String with name of the new entry\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the routine succeeds, it must return STATUS\_\-SUCCESS. Otherwise, it must return one of the error status values defined in ntstatus.h. \end{Desc}
+\index{Ext2FsdCreateInode@{Ext2FsdCreateInode}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdCreateInode@{Ext2FsdCreateInode}}\hypertarget{inode_8c_a14}{
+\index{inode.c@{inode.c}!Ext2FsdCreateInode@{Ext2FsdCreateInode}}
+\index{Ext2FsdCreateInode@{Ext2FsdCreateInode}!inode.c@{inode.c}}
+\paragraph[Ext2FsdCreateInode]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Ext2Fsd\-Create\-Inode (\hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context}, PFSD\_\-VCB {\em Vcb}, PFSD\_\-FCB {\em p\-Parent\-Fcb}, ULONG {\em Parent\-Inode\-Number}, ULONG {\em Type}, ULONG {\em File\-Attr}, PUNICODE\_\-STRING {\em File\-Name})}\hfill}
+\label{inode_8c_a14}
+
+
+Creates new Inode on disk and makes Directory entry.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \item[{\em Vcb}]Volume control block \item[{\em p\-Parent\-Fcb}]FCB of the parent directory \item[{\em Parent\-Inode\-Number}]Inode number of the parent directory \item[{\em Type}]Type of entry (file or directory) \item[{\em File\-Name}]\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the routine succeeds, it must return STATUS\_\-SUCCESS. Otherwise, it must return one of the error status values defined in ntstatus.h. \end{Desc}
+\index{Ext2FsdDeleteInode@{Ext2FsdDeleteInode}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdDeleteInode@{Ext2FsdDeleteInode}}\hypertarget{inode_8c_a17}{
+\index{inode.c@{inode.c}!Ext2FsdDeleteInode@{Ext2FsdDeleteInode}}
+\index{Ext2FsdDeleteInode@{Ext2FsdDeleteInode}!inode.c@{inode.c}}
+\paragraph[Ext2FsdDeleteInode]{\setlength{\rightskip}{0pt plus 5cm}BOOLEAN Ext2Fsd\-Delete\-Inode (\hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context}, PFSD\_\-VCB {\em Vcb}, ULONG {\em Inode}, ULONG {\em Type})}\hfill}
+\label{inode_8c_a17}
+
+
+Free an inode on the disk.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \item[{\em Vcb}]Volume control block \item[{\em Inode}]Number of inode \item[{\em Type}]Type of entry (file or directory)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the operation finished successfully. \end{Desc}
+\index{Ext2FsdGetInodeLba@{Ext2FsdGetInodeLba}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdGetInodeLba@{Ext2FsdGetInodeLba}}\hypertarget{inode_8c_a22}{
+\index{inode.c@{inode.c}!Ext2FsdGetInodeLba@{Ext2FsdGetInodeLba}}
+\index{Ext2FsdGetInodeLba@{Ext2FsdGetInodeLba}!inode.c@{inode.c}}
+\paragraph[Ext2FsdGetInodeLba]{\setlength{\rightskip}{0pt plus 5cm}BOOLEAN Ext2Fsd\-Get\-Inode\-Lba (IN PFSD\_\-VCB {\em vcb}, IN ULONG {\em inode}, OUT PLONGLONG {\em offset})}\hfill}
+\label{inode_8c_a22}
+
+
+Get offset on physical partition.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em vcb}]Volume control block \item[{\em inode}]Number of inode \item[{\em offset}]Offset on physical partition\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the operation finished successfully. \end{Desc}
+\index{Ext2FsdNewInode@{Ext2FsdNewInode}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdNewInode@{Ext2FsdNewInode}}\hypertarget{inode_8c_a15}{
+\index{inode.c@{inode.c}!Ext2FsdNewInode@{Ext2FsdNewInode}}
+\index{Ext2FsdNewInode@{Ext2FsdNewInode}!inode.c@{inode.c}}
+\paragraph[Ext2FsdNewInode]{\setlength{\rightskip}{0pt plus 5cm}BOOLEAN Ext2Fsd\-New\-Inode (\hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context}, PFSD\_\-VCB {\em Vcb}, ULONG {\em Group\-Hint}, ULONG {\em Type}, PULONG {\em Inode\-Number})}\hfill}
+\label{inode_8c_a15}
+
+
+Allocate a new Inode on the partition.
+
+The algoritm of this functions tries first to allocate an inode in the same block group. If there are no more inodes available it searches inodes in other block groups.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \item[{\em Vcb}]Volume control block \item[{\em Group\-Hint}]Number of block group where search starts \item[{\em Type}]Type of entry (file or directory) \item[{\em Inode\-Number}]Number of inode\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the operation finished successfully. \end{Desc}
+\index{Ext2FsdRemoveEntry@{Ext2FsdRemoveEntry}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdRemoveEntry@{Ext2FsdRemoveEntry}}\hypertarget{inode_8c_a18}{
+\index{inode.c@{inode.c}!Ext2FsdRemoveEntry@{Ext2FsdRemoveEntry}}
+\index{Ext2FsdRemoveEntry@{Ext2FsdRemoveEntry}!inode.c@{inode.c}}
+\paragraph[Ext2FsdRemoveEntry]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Ext2Fsd\-Remove\-Entry (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context}, IN PFSD\_\-VCB {\em Vcb}, IN PFSD\_\-FCB {\em Dcb}, IN ULONG {\em Inode})}\hfill}
+\label{inode_8c_a18}
+
+
+Remove a directory entry.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \item[{\em Vcb}]Volume control block \item[{\em Dcb}]Directory control block \item[{\em Inode}]Number of inode\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the routine succeeds, it must return STATUS\_\-SUCCESS. Otherwise, it must return one of the error status values defined in ntstatus.h. \end{Desc}
+\index{Ext2FsdSaveGroup@{Ext2FsdSaveGroup}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdSaveGroup@{Ext2FsdSaveGroup}}\hypertarget{inode_8c_a19}{
+\index{inode.c@{inode.c}!Ext2FsdSaveGroup@{Ext2FsdSaveGroup}}
+\index{Ext2FsdSaveGroup@{Ext2FsdSaveGroup}!inode.c@{inode.c}}
+\paragraph[Ext2FsdSaveGroup]{\setlength{\rightskip}{0pt plus 5cm}BOOLEAN Ext2Fsd\-Save\-Group (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context}, IN PFSD\_\-VCB {\em Vcb})}\hfill}
+\label{inode_8c_a19}
+
+
+Write group descriptor to the disk.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \item[{\em Vcb}]Volume control block\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the operation finished successfully. \end{Desc}
+\index{Ext2FsdSaveInode@{Ext2FsdSaveInode}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdSaveInode@{Ext2FsdSaveInode}}\hypertarget{inode_8c_a20}{
+\index{inode.c@{inode.c}!Ext2FsdSaveInode@{Ext2FsdSaveInode}}
+\index{Ext2FsdSaveInode@{Ext2FsdSaveInode}!inode.c@{inode.c}}
+\paragraph[Ext2FsdSaveInode]{\setlength{\rightskip}{0pt plus 5cm}BOOLEAN Ext2Fsd\-Save\-Inode (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context}, IN PFSD\_\-VCB {\em Vcb}, IN ULONG {\em Inode}, IN inode\_\-t $\ast$ {\em inode})}\hfill}
+\label{inode_8c_a20}
+
+
+Write inode to the disk.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \item[{\em Vcb}]Volume control block \item[{\em Inode}]Number of inode \item[{\em inode\_\-t}]Pointer to the inode struct which has to be saved\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the operation finished successfully. \end{Desc}
+\index{Ext2FsdSaveSuper@{Ext2FsdSaveSuper}!inode.c@{inode.c}}\index{inode.c@{inode.c}!Ext2FsdSaveSuper@{Ext2FsdSaveSuper}}\hypertarget{inode_8c_a21}{
+\index{inode.c@{inode.c}!Ext2FsdSaveSuper@{Ext2FsdSaveSuper}}
+\index{Ext2FsdSaveSuper@{Ext2FsdSaveSuper}!inode.c@{inode.c}}
+\paragraph[Ext2FsdSaveSuper]{\setlength{\rightskip}{0pt plus 5cm}BOOLEAN Ext2Fsd\-Save\-Super (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context}, IN PFSD\_\-VCB {\em Vcb})}\hfill}
+\label{inode_8c_a21}
+
+
+Write super block to the disk.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \item[{\em Vcb}]Volume control block\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the operation finished successfully. \end{Desc}

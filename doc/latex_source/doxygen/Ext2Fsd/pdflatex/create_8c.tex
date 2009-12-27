@@ -1,0 +1,62 @@
+\hypertarget{create_8c}{
+\subsection{create.c File Reference}
+\label{create_8c}\index{create.c@{create.c}}
+}
+
+
+\subsubsection{Detailed Description}
+Functions to handle IRP\_\-MJ\_\-CREATE.
+
+The I/O Manager sends this request when a new file or directory is being created, or when an existing file, device, directory, or volume is being opened. Normally this IRP is sent on behalf of a user-mode application that has called a function such as Create\-File or a kernel-mode component that has called Io\-Create\-File, Zw\-Create\-File, or Zw\-Open\-File.
+
+{\tt \#include \char`\"{}ntifs.h\char`\"{}}\par
+{\tt \#include \char`\"{}ext2.h\char`\"{}}\par
+{\tt \#include \char`\"{}fsd.h\char`\"{}}\par
+\subsubsection*{Functions}
+\begin{CompactItemize}
+\item 
+NTSTATUS \hyperlink{create_8c_a3}{Ext2Fsd\-Create\-File} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context)
+\begin{CompactList}\small\item\em Creates the structures in the memory representing a physical file.\item\end{CompactList}\item 
+PFSD\_\-FCB \hyperlink{create_8c_a4}{Fsd\-Lookup\-Fcb\-By\-File\-Name} (IN PFSD\_\-VCB Vcb, IN PUNICODE\_\-STRING Full\-File\-Name)
+\begin{CompactList}\small\item\em Checks if FCB for a file is in the memory already.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Function Documentation}
+\index{Ext2FsdCreateFile@{Ext2FsdCreateFile}!create.c@{create.c}}\index{create.c@{create.c}!Ext2FsdCreateFile@{Ext2FsdCreateFile}}\hypertarget{create_8c_a3}{
+\index{create.c@{create.c}!Ext2FsdCreateFile@{Ext2FsdCreateFile}}
+\index{Ext2FsdCreateFile@{Ext2FsdCreateFile}!create.c@{create.c}}
+\paragraph[Ext2FsdCreateFile]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Ext2Fsd\-Create\-File (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context})}\hfill}
+\label{create_8c_a3}
+
+
+Creates the structures in the memory representing a physical file.
+
+If a file already exists on the disk, this function creates all needed structure to represent the file in memory.
+
+If the file does not yet exists, it looks for free inodes on disk and creates the directory entries and structures for the new allocated inodes.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Status if all allocations were successful. \end{Desc}
+\index{FsdLookupFcbByFileName@{FsdLookupFcbByFileName}!create.c@{create.c}}\index{create.c@{create.c}!FsdLookupFcbByFileName@{FsdLookupFcbByFileName}}\hypertarget{create_8c_a4}{
+\index{create.c@{create.c}!FsdLookupFcbByFileName@{FsdLookupFcbByFileName}}
+\index{FsdLookupFcbByFileName@{FsdLookupFcbByFileName}!create.c@{create.c}}
+\paragraph[FsdLookupFcbByFileName]{\setlength{\rightskip}{0pt plus 5cm}PFSD\_\-FCB Fsd\-Lookup\-Fcb\-By\-File\-Name (IN PFSD\_\-VCB {\em Vcb}, IN PUNICODE\_\-STRING {\em Full\-File\-Name})}\hfill}
+\label{create_8c_a4}
+
+
+Checks if FCB for a file is in the memory already.
+
+Returns FCB for Full\-File\-Name if already exists in Fcb\-List of Vcb or NULL if FCB not yet exists.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Vcb}]Volume\-Control\-Block of mounted Partition \item[{\em Full\-File\-Name}]Full Path plus Filename \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Fcb of requested File \end{Desc}

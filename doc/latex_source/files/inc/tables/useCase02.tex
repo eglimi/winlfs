@@ -1,0 +1,36 @@
+\begin{longtable}{|p{4cm} X|}
+\caption{\label{tab:useCase02}Use Case UC02}\\
+\hline
+Use Case Name 					&Mount / Unmount\\
+Use Case Number					&UC02\\
+Actors							&Windows XP user\\
+Purpose							&Mount or unmount a partition.\\
+Overview						&If a partition is not mounted automatically at boot time, the actor can manually mount or unmount a ext2 or ext3 partition by using Windows XP file system Manager. Alternatively the actor can mount a partition by using the provided shell program.\\
+Formality Type							&casual\\
+Priority						&2\\
+Cross References				&\textit{Functions:} R1.1, R1.2, R1.3\\ 
+Main success scenario		&
+\begin{enumerate}
+\item System recognizes ext partition on start-up.
+\item	System starts file system driver.
+\item File system driver mounts ext partition.
+\item Actor works with mounted partition.
+\end{enumerate}
+\\
+Alternate scenario				&
+\begin{enumerate}
+\item	System could not mount ext partition.
+\item Actor opens Computer Management Window and clicks on logical device.
+\item System shows all partitions (including ext2 and ext3).
+\item Actor selects a partition and associate desired drive letter $x$.
+\item System mounts partition and shows it in the file browser as drive $x$.
+\end{enumerate}
+\\
+Errors							&\begin{itemize}
+								 \item Partition not found
+								 \item Type of partition not valid
+								 \end{itemize}\\
+Preconditions					&Partition is unmounted or mounted.\\
+Postconditions					&Partition is mounted or unmounted.\\
+\hline
+\end{longtable}

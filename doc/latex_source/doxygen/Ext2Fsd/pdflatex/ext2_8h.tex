@@ -1,0 +1,51 @@
+\hypertarget{ext2_8h}{
+\subsection{ext2.h File Reference}
+\label{ext2_8h}\index{ext2.h@{ext2.h}}
+}
+
+
+\subsubsection{Detailed Description}
+Headerfile for \hyperlink{ext2_8c}{ext2.c}, \hyperlink{super_8c}{super.c}, \hyperlink{group_8c}{group.c}, \hyperlink{inode_8c}{inode.c} and \hyperlink{cache_8c}{cache.c}.
+
+Declares any structures and function prototypes used by the driver. Only fields used during this thesis are listed. Short description of other fields can be found in the source code.
+
+{\tt \#include \char`\"{}stdlib.h\char`\"{}}\par
+{\tt \#include \char`\"{}windows.h\char`\"{}}\par
+{\tt \#include \char`\"{}cache.h\char`\"{}}\par
+\subsubsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structext2__t}{ext2\_\-t}
+\begin{CompactList}\small\item\em Ext2 structure.\item\end{CompactList}\item 
+struct \hyperlink{structgroup__desc__t}{group\_\-desc\_\-t}
+\begin{CompactList}\small\item\em Group descripton structure.\item\end{CompactList}\item 
+struct \hyperlink{structsuper__block__t}{super\_\-block\_\-t}
+\begin{CompactList}\small\item\em Super block structure.\item\end{CompactList}\end{CompactItemize}
+\subsubsection*{Functions}
+\begin{CompactItemize}
+\item 
+inode\_\-t $\ast$ \hyperlink{ext2_8h_a129}{Ext2Fsd\-Allocate\-Inode} ()
+\begin{CompactList}\small\item\em Allocates memory for inode\_\-t structure from paged pool.\item\end{CompactList}\item 
+void \hyperlink{ext2_8h_a130}{Ext2Fsd\-Free\-Inode} (inode\_\-t $\ast$inode)
+\begin{CompactList}\small\item\em Frees memory for inode\_\-t structure.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Function Documentation}
+\index{Ext2FsdAllocateInode@{Ext2FsdAllocateInode}!ext2.h@{ext2.h}}\index{ext2.h@{ext2.h}!Ext2FsdAllocateInode@{Ext2FsdAllocateInode}}\hypertarget{ext2_8h_a129}{
+\index{ext2.h@{ext2.h}!Ext2FsdAllocateInode@{Ext2FsdAllocateInode}}
+\index{Ext2FsdAllocateInode@{Ext2FsdAllocateInode}!ext2.h@{ext2.h}}
+\paragraph[Ext2FsdAllocateInode]{\setlength{\rightskip}{0pt plus 5cm}inode\_\-t$\ast$ Ext2Fsd\-Allocate\-Inode ()}\hfill}
+\label{ext2_8h_a129}
+
+
+Allocates memory for inode\_\-t structure from paged pool.
+
+\index{Ext2FsdFreeInode@{Ext2FsdFreeInode}!ext2.h@{ext2.h}}\index{ext2.h@{ext2.h}!Ext2FsdFreeInode@{Ext2FsdFreeInode}}\hypertarget{ext2_8h_a130}{
+\index{ext2.h@{ext2.h}!Ext2FsdFreeInode@{Ext2FsdFreeInode}}
+\index{Ext2FsdFreeInode@{Ext2FsdFreeInode}!ext2.h@{ext2.h}}
+\paragraph[Ext2FsdFreeInode]{\setlength{\rightskip}{0pt plus 5cm}void Ext2Fsd\-Free\-Inode (inode\_\-t $\ast$ {\em inode})}\hfill}
+\label{ext2_8h_a130}
+
+
+Frees memory for inode\_\-t structure.
+

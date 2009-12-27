@@ -1,0 +1,35 @@
+\chapter*{Conceptual Formulation}
+\addcontentsline{toc}{chapter}{Aufgabenstellung}
+
+Der Zugriff auf Linux-Partitionen im Ext2 oder Ext3 Format ist von Windows XP standardmässig nicht unterstützt. So können dort abgelegte Daten unter Windows weder angeschaut noch geändert werden. Windows XP bietet jedoch die Möglichkeit zusätzliche Dateisystemtreiber zu laden. Ein beschränkt funktionsfähiger Dateisystemtreiber für Ext2 wurde in einer Abschlussarbeit des NDS Software Engineering bereits entwickelt. Davon ausgehend soll ein einfach handhabbarer und robuster Dateisystemtreiber realisiert werden, der neben Ext2 auch das protokollierende Dateisystem Ext3 unterstützt.
+
+%----------
+\section*{Aufgaben}
+\label{sec:Tasks}
+Es ist ein Dateisystemtreiber für Windows XP zu entwickeln, der folgende Eigenschaften aufweist: 
+\begin{itemize}
+	\item	Unterstützung der Dateisystemformate Ext2 und Ext3 
+    \item	Lese- und Schreibzugriff
+	\item	Sinnvolle Umsetzung der Linux Dateisystemrechte auf Windows Dateisystemrechte 
+    \item	Robustes Betrienbsverhalten v.A. hinsichtlich Beschädigung von Ext2/3 Partitionen und Datenverlust
+    \item	Manuelles und automatisches Mounting/Unmountiung von Ext2/3 Partitionen
+    \item	Optional: gute Zwischenpufferung für hohen Durchsatz und kurze Reaktionszeiten
+\end{itemize}
+Nach Bedarf sind zusäzliche Hilfs- und Testprogramme zu erstellen, die Auskunft geben über den Zustand der eingehängten Ext2/3 Partitionen. Erfasste Parameter könnten sein: Anzahl geschriebener/gelesener Bytes, Anzahl Verzeichniszugriffe, Anzahl Fehler/Wiederholungen, mittlere Reaktionszeit und Durchsatzrate. Testprogramme sollten  ein automatisiertes Prüfen von Ext2/3 Partitionen erlauben, um einfach festzustellen ob der Dateisystemtreiber einwandfrei läuft bzw. Probleme mit den entsprechenden Partitionen festgestellt wurden. Für die Entwicklung des Treibers stehen der IFS(Inetrface File System)-Kit von Microsoft, sowie alle benötigten Entwicklertools zur Verfügung.
+
+Als Resultat soll eine demonstrierbare und in der Praxis einsetzbare Software vorliegen, deren Entwurf und Funktionsweise in einem Bericht dokumentiert sind. Die SW soll auf verschiedensten PC's funktionsfähig sein und mit einer Bedienungsanleitung ergänzt werden.
+
+Es besteht die Absicht den entwickelten Treiber gratis interessierten Personen zugänglich zu machen, wobei aber die Entwicklung innerhalb der Lizenzvorgaben von Microsoft zu erfolgen hat.
+
+
+%----------
+\section*{Technologien}
+\begin{itemize}
+	\item	Festplattenspeicherung auf logischer Ebene
+    \item	Datensysteme
+    \item	Windows XP Treiber, spez. Dateisystemtreiber 
+\end{itemize}
+
+\vspace*{50mm}
+\noindent
+\textbf{Unterschrift} \dotfill 

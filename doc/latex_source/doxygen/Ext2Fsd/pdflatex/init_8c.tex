@@ -1,0 +1,39 @@
+\hypertarget{init_8c}{
+\subsection{init.c File Reference}
+\label{init_8c}\index{init.c@{init.c}}
+}
+
+
+\subsubsection{Detailed Description}
+Entry and Unload functions.
+
+The Entry and Unload functions are needed to initialize and unload the driver.
+
+{\tt \#include \char`\"{}ntifs.h\char`\"{}}\par
+{\tt \#include \char`\"{}fsd.h\char`\"{}}\par
+\subsubsection*{Functions}
+\begin{CompactItemize}
+\item 
+NTSTATUS \hyperlink{init_8c_a1}{Driver\-Entry} (IN PDRIVER\_\-OBJECT Driver\-Object, IN PUNICODE\_\-STRING Registry\-Path)
+\begin{CompactList}\small\item\em Entry point of the driver.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Function Documentation}
+\index{DriverEntry@{DriverEntry}!init.c@{init.c}}\index{init.c@{init.c}!DriverEntry@{DriverEntry}}\hypertarget{init_8c_a1}{
+\index{init.c@{init.c}!DriverEntry@{DriverEntry}}
+\index{DriverEntry@{DriverEntry}!init.c@{init.c}}
+\paragraph[DriverEntry]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Driver\-Entry (IN PDRIVER\_\-OBJECT {\em Driver\-Object}, IN PUNICODE\_\-STRING {\em Registry\-Path})}\hfill}
+\label{init_8c_a1}
+
+
+Entry point of the driver.
+
+This function initializes the driver after loading.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Driver\-Object}]DRIVER\_\-OBJECT structure of the lower driver. \item[{\em Registry\-Path}]Unicode string to the driver's registry key. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the driver initialization was successful. \end{Desc}

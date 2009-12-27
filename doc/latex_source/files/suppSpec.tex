@@ -1,0 +1,60 @@
+\chapter{Requirements in Detail}
+\label{cha:requirementsInDetail}
+
+%----------
+\section{Introduction}
+This chapter describes all functional and non-functional requirements.
+
+%----------
+\section{Functional Requirements}
+\subsection{Functions}
+Table \ref{tab:tabFunctions} shows all functions performed by WinLFS. Functions are sorted by phases. The different phases can be found in the project plan. R1.x correspond to phase Recognizer, R2.x to phase ext2 write, R3.x to phase ext3 read and R4.x to phase ext3 write. 
+
+In several requirements, links are mentioned. These links are soft- and hard-links on a Linux partition, not Windows links.
+\LTXtable{\linewidth}{./files/inc/tables/tabFunctions}
+
+\subsection{Priorities}
+In the above table, tasks are prioritized. Table \ref{tab:useCasesFuncPrio} describes this priorities.
+\LTXtable{\linewidth}{./files/inc/tables/useCasesFuncPrio}
+
+
+%----------
+\section{Non-Functional Requirements}
+
+\subsection{Partitions}
+Every ext2 and ext3 Partition on the hard disk is recognized at boot time. Optionally, ext partitions on floppy disks are automatically recognized during the first floppy access. If a partition is recognized, a drive letter is associated to this partition, allowing users to work with a ext2/3 partition the same way as with a NTFS or FAT partition. Alternatively, if possible, users can mount or unmount partitions by using Windows XP disk manager. If this is not possible, a console application will be provided.
+
+%----------
+\subsection{File Permissions}
+File permission are handled differently on NTFS and ext2/3 partitions. WinLFS tries to merge this permissions as smart as possible. Merging file system permissions is described in a USENIX \footnote{\url{http://www.usenix.org}} paper \cite{mergeFS} and will be covered in greater detail in later chapters.
+
+%----------
+\subsection{Reliability}
+Most important, WinLFS must not damage or corrupt any ext2 or ext3 partition. Once loaded, the driver is always available without user interaction. 
+
+%----------
+\subsection{Performance}
+Performance is fundamental for any file system driver. The faster the better. Therefore, WinLFS intends to be not slower than 1.5 times the speed of NTFS.
+
+%----------
+\subsection{Installation}
+WinLFS can be installed with the set up tool which starts by clicking on the executable file. It runs on Windows XP exclusively. Installation can be performed by any Windows user who has basic experience in installing programs.
+
+%----------
+\subsection{Supportability}
+After installation, there is nothing to be done to maintain WinLFS.
+
+%----------
+\subsection{Implementation Constraints}
+All WinLFS code is implemented following the GNU Coding Standards \cite{codeStd}.
+
+%----------
+\subsection{Interfaces}
+WinLFS uses Windows IFS Development Kit.
+
+%----------
+\subsection{License}
+WinLFS must not violate Window's IFS Development Kit license. Especially \verb~ntifs.h~ must not made public available and must therefore not be shipped with the source code. There is a free version of \verb~ntifs.h~ available at \url{http://www.acc.umu.se/~bosse/ntifs.h}.
+
+Apart from this, WinLFS is free Software distributed under the terms of the GNU General Public License. You can get a copy of this License at \url{http://www.gnu.org/licenses/gpl.txt}.
+

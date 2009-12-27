@@ -1,0 +1,43 @@
+\hypertarget{structgroup__desc__t}{
+\subsection{group\_\-desc\_\-t Struct Reference}
+\label{structgroup__desc__t}\index{group_desc_t@{group\_\-desc\_\-t}}
+}
+{\tt \#include $<$ext2.h$>$}
+
+
+
+\subsubsection{Detailed Description}
+Group descripton structure.
+
+This structure represents the group description block in memory.
+
+Block number 2 of a block group. 
+
+\subsubsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+\hypertarget{structgroup__desc__t_m0}{
+\_\-u32 \hyperlink{structgroup__desc__t_m0}{bg\_\-block\_\-bitmap}}
+\label{structgroup__desc__t_m0}
+
+\begin{CompactList}\small\item\em Block number of block bitmap.\item\end{CompactList}\item 
+\hypertarget{structgroup__desc__t_m1}{
+\_\-u32 \hyperlink{structgroup__desc__t_m1}{bg\_\-inode\_\-bitmap}}
+\label{structgroup__desc__t_m1}
+
+\begin{CompactList}\small\item\em Block number of inode bitmap.\item\end{CompactList}\item 
+\hypertarget{structgroup__desc__t_m2}{
+\_\-u32 \hyperlink{structgroup__desc__t_m2}{bg\_\-inode\_\-table}}
+\label{structgroup__desc__t_m2}
+
+\begin{CompactList}\small\item\em Block number of first inode table block.\item\end{CompactList}\item 
+\hypertarget{structgroup__desc__t_m3}{
+\_\-u16 \hyperlink{structgroup__desc__t_m3}{bg\_\-free\_\-blocks\_\-count}}
+\label{structgroup__desc__t_m3}
+
+\begin{CompactList}\small\item\em Number of free blocks in the group.\item\end{CompactList}\item 
+\hypertarget{structgroup__desc__t_m4}{
+\_\-u16 \hyperlink{structgroup__desc__t_m4}{bg\_\-free\_\-inodes\_\-count}}
+\label{structgroup__desc__t_m4}
+
+\begin{CompactList}\small\item\em Number of free inodes in the group.\item\end{CompactList}\end{CompactItemize}

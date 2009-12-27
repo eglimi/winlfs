@@ -1,0 +1,29 @@
+\begin{longtable}{|p{4cm} X|}
+\caption{\label{tab:useCase01}Use Case UC01}\\
+
+\hline
+Use Case Name 					&File operations\\
+Use Case Number					&UC01\\
+Actors							&Windows XP user\\
+Purpose							&Perform an operation on a file, directory or link.\\
+Overview						&The actor reads or writes a file, a directory or a link on either an ext2 or an ext3 partition.\\
+Formality Type							&casual\\
+Priority						&1\\
+Cross References				&\textit{Functions:} R2.1, R2.2, R2.4, R2.6, R3.1, R3.2, R4.1, R4.2, R4.3, R4.5, R4.6\\ 
+Main success scenario	&
+\begin{enumerate}
+\item Actor opens a file browser and clicks on a ext2 or ext3 partition.
+\item System displays directory structure.
+\item Actor tries to copy, move, delete or edit a file, directory or link.
+\item System performs requested operation.
+\end{enumerate}
+\\
+Errors							&\begin{itemize}
+								 \item File, directory or link not found on disk
+								 \item Partition full
+								 \item No permission
+								 \end{itemize}\\
+Preconditions					&Partition is mounted\\
+Postconditions					&-\\
+\hline
+\end{longtable}

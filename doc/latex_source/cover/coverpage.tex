@@ -1,0 +1,67 @@
+\documentclass[a4paper, 11pt]{report} %LaTeX Standard
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex, colorlinks=true, 
+	linkcolor=blue, 
+	citecolor=blue, 
+	urlcolor=blue, 
+	plainpages=false]{hyperref}
+\usepackage{url}
+\usepackage{here}
+\usepackage{latexsym}
+\usepackage[hang,small,bf]{caption2}
+
+\begin{document}
+%titelseite erstellen
+\begingroup
+	\renewcommand{\thepage}{title}
+	\begin{titlepage}
+		\vspace*{10mm} 
+				\begin{center}
+					\includegraphics[width=12cm]{../files/inc/pic/logo} \vspace{15mm}\\
+				\end{center}
+				\begin{center}
+				\today
+				\end{center}
+
+			\vspace*{50mm}
+			%\noindent
+			{\large \textbf{
+				\hspace*{15mm} \\
+				\hspace*{15mm} 	By: \vspace{5mm} \\
+				\hspace*{15mm} 	\href{mailto:marc.winiger@hsr.ch}{Marc Winiger} $<$marc.winiger@hsr.ch$>$ \\
+				\hspace*{15mm} 	\href{mailto:michael.egli@hsr.ch}{Michael Egli} $<$michael.egli@hsr.ch$>$ 										\vspace{10mm}\\
+				\hspace*{15mm}	Tutor: Prof. E. Glatz}} \\ 
+	\newpage
+	
+%	\renewcommand{\thepage}{dedication}
+%	\thispagestyle{empty}
+%		\begin{center}	
+%			\vspace*{20mm}
+%			{\large \textit{für alle die wir kennen}}
+%		\end{center}
+%	\newpage
+	
+	\renewcommand{\thepage}{hsr}
+	\thispagestyle{empty}
+		\noindent
+		This documentation has been written at Hochschule Rapperswil, department of computer science.
+			
+			\begin{figure}[H]
+				\begin{center}
+					\includegraphics[width=5cm]{../files/inc/pic/HSR} \vspace{5mm}\\
+					\url{http://www.i.hsr.ch}
+				\end{center}
+			\end{figure}
+			
+		\vspace*{100mm}
+		\noindent
+		{\small
+			This Document is a property of Hochschule Rapperswil, Switzerland.\\
+			\copyright  2003 by Hochschule Rapperswil\\
+		Typeset by \LaTeX\ }
+	\end{titlepage}
+\endgroup
+\end{document}
+

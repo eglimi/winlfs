@@ -1,0 +1,43 @@
+\hypertarget{alloc_8c}{
+\subsection{alloc.c File Reference}
+\label{alloc_8c}\index{alloc.c@{alloc.c}}
+}
+
+
+\subsubsection{Detailed Description}
+Allocates and frees memory for structures.
+
+This file contains all allocate and free functions to manage the memory used by structures.
+
+{\tt \#include \char`\"{}ext2.h\char`\"{}}\par
+{\tt \#include \char`\"{}io.h\char`\"{}}\par
+{\tt \#include \char`\"{}ntifs.h\char`\"{}}\par
+{\tt \#include \char`\"{}fsd.h\char`\"{}}\par
+\subsubsection*{Functions}
+\begin{CompactItemize}
+\item 
+inode\_\-t $\ast$ \hyperlink{alloc_8c_a7}{Ext2Fsd\-Allocate\-Inode} ()
+\begin{CompactList}\small\item\em Allocates memory for inode\_\-t structure from paged pool.\item\end{CompactList}\item 
+void \hyperlink{alloc_8c_a8}{Ext2Fsd\-Free\-Inode} (inode\_\-t $\ast$inode)
+\begin{CompactList}\small\item\em Frees memory for inode\_\-t structure.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Function Documentation}
+\index{Ext2FsdAllocateInode@{Ext2FsdAllocateInode}!alloc.c@{alloc.c}}\index{alloc.c@{alloc.c}!Ext2FsdAllocateInode@{Ext2FsdAllocateInode}}\hypertarget{alloc_8c_a7}{
+\index{alloc.c@{alloc.c}!Ext2FsdAllocateInode@{Ext2FsdAllocateInode}}
+\index{Ext2FsdAllocateInode@{Ext2FsdAllocateInode}!alloc.c@{alloc.c}}
+\paragraph[Ext2FsdAllocateInode]{\setlength{\rightskip}{0pt plus 5cm}inode\_\-t$\ast$ Ext2Fsd\-Allocate\-Inode ()}\hfill}
+\label{alloc_8c_a7}
+
+
+Allocates memory for inode\_\-t structure from paged pool.
+
+\index{Ext2FsdFreeInode@{Ext2FsdFreeInode}!alloc.c@{alloc.c}}\index{alloc.c@{alloc.c}!Ext2FsdFreeInode@{Ext2FsdFreeInode}}\hypertarget{alloc_8c_a8}{
+\index{alloc.c@{alloc.c}!Ext2FsdFreeInode@{Ext2FsdFreeInode}}
+\index{Ext2FsdFreeInode@{Ext2FsdFreeInode}!alloc.c@{alloc.c}}
+\paragraph[Ext2FsdFreeInode]{\setlength{\rightskip}{0pt plus 5cm}void Ext2Fsd\-Free\-Inode (inode\_\-t $\ast$ {\em inode})}\hfill}
+\label{alloc_8c_a8}
+
+
+Frees memory for inode\_\-t structure.
+

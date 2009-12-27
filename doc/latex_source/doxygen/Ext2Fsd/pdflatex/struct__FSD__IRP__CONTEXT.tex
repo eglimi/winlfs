@@ -1,0 +1,36 @@
+\hypertarget{struct__FSD__IRP__CONTEXT}{
+\subsection{\_\-FSD\_\-IRP\_\-CONTEXT Struct Reference}
+\label{struct__FSD__IRP__CONTEXT}\index{_FSD_IRP_CONTEXT@{\_\-FSD\_\-IRP\_\-CONTEXT}}
+}
+{\tt \#include $<$fsd.h$>$}
+
+
+
+\subsubsection{Detailed Description}
+Irp context struct.
+
+Used to pass information about a request between the drivers functions. 
+
+\subsubsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+\hypertarget{struct__FSD__IRP__CONTEXT_m1}{
+PIRP \hyperlink{struct__FSD__IRP__CONTEXT_m1}{Irp}}
+\label{struct__FSD__IRP__CONTEXT_m1}
+
+\begin{CompactList}\small\item\em Pointer to the IRP this request describes.\item\end{CompactList}\item 
+\hypertarget{struct__FSD__IRP__CONTEXT_m2}{
+UCHAR \hyperlink{struct__FSD__IRP__CONTEXT_m2}{Major\-Function}}
+\label{struct__FSD__IRP__CONTEXT_m2}
+
+\begin{CompactList}\small\item\em Major request.\item\end{CompactList}\item 
+\hypertarget{struct__FSD__IRP__CONTEXT_m3}{
+UCHAR \hyperlink{struct__FSD__IRP__CONTEXT_m3}{Minor\-Function}}
+\label{struct__FSD__IRP__CONTEXT_m3}
+
+\begin{CompactList}\small\item\em Minor request.\item\end{CompactList}\item 
+\hypertarget{struct__FSD__IRP__CONTEXT_m4}{
+PDEVICE\_\-OBJECT \hyperlink{struct__FSD__IRP__CONTEXT_m4}{Device\-Object}}
+\label{struct__FSD__IRP__CONTEXT_m4}
+
+\begin{CompactList}\small\item\em Pointer to the target device object.\item\end{CompactList}\end{CompactItemize}

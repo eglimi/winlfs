@@ -1,0 +1,35 @@
+\chapter{(Un)mount and unload tools}
+\label{cha:mountunmounttools}
+
+%----------
+\section{Overview}
+There are two tools for mounting, unmounting drives and unloading a driver. The mount and unmount tools are provided by Matt Wu \href{mailto:mattwu@163.com}{mattwu@163.com} and the unload binary is provided by Bo Brantén.
+
+Both executables can be found on our cdrom in the Directory \verb~X:\binaries\~ where \verb~X:~ is the letter of the cdrom drive.
+
+%----------
+\section{Mount.exe}
+This executable can be used for assigning a drive letter to a partition or release a mounted partiton.
+
+%-----
+\subsection{mount}
+\begin{Verbatim}
+mount.exe 0 7 k:
+\end{Verbatim}
+The first number identifies the disk beginning from zero, the second number is the partition number beginning from one. The third parameter is desired drive letter. 
+
+%-----
+\subsection{unmount}
+\begin{Verbatim}
+mount.exe /umount k:
+\end{Verbatim}
+The parameter \verb~/umount~ is used to unmount a mounted partition by specifying a drive letter.
+
+%----------
+\section{Unload.exe}
+This executable can be used to unload a running driver. Due to Windows XP is not able to unload a driver, there is needed this seperate tool. The driver must support unloading. The code needed to do so is described in Chapter \ref{cha:unloadFunction}.
+
+\begin{Verbatim}
+unload.exe Ext2Fsd
+\end{Verbatim}
+The parameter specifies the name of the driver to be unloaded.

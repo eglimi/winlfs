@@ -1,0 +1,89 @@
+\chapter{Unload functionality}
+\label{cha:unloadFunction}
+
+%----------
+\section{Overview}
+There's no official way to unload a file system driver with Windows XP. But during development it would be very comfortable if one had the possibility to unload the driver. So you could avoid the need to reboot Windows each time you have to test the new driver version.
+
+Due to the fact it would be a really useful feature, there is a workaround available already. First we spent a few hours to search an own solution, but then we received a hint in a news group. Bo Brantén told us, that he solved this problem already in his open source RomFS driver.
+
+%----------
+\section{Realisation}
+
+%-----
+\subsection{Private IoControl}
+IOCTL\_PREPARE\_TO\_UNLOAD is a macro using the system-supplied macro CTL\_\-CODE to set up a new I/O control code.
+
+\begin{Verbatim}
+#define IOCTL_PREPARE_TO_UNLOAD \
+    CTL_CODE(FILE_DEVICE_UNKNOWN, 2048, METHOD_NEITHER, FILE_WRITE_ACCESS)
+\end{Verbatim}
+
+The macro takes the following parameters: (partially taken from DDK Help)
+\begin{description}
+\item[DeviceType] matches the value set in the DeviceType member of the driver's DEVICE\_\-OBJECT structure.
+\item[FunctionCode] is in the range 0x800 to 0xfff for private I/O control codes defined by customers of Microsoft. Values in the range 0x000 to 0x7ff are reserved by Microsoft for public I/O control codes.
+\item[TransferType] indicates how data is passed to the driver. With METHOD\_\-NEITHER, the driver can be sent such a request only while it is running in the context of the thread that originates the I/O control request. Only a highest-level kernel-mode driver is guaranteed to meet this condition.
+\item[RequiredAccess ] indicates the type of access that must be requested when the caller opens the file object representing the device. With FILE\_\-WRITE\_\-DATA, the driver can carry out the requested operation only for a caller with write access rights. 
+\end{description}
+
+%-----
+\subsection{Request to unload}
+If the request to unload from the unload tool reaches the driver, the Ext2Fsd\-DeviceControl function will be called. The IoControlCode can be accessed through the IRP stack and must have the value of IOCTL\_PREPARE\_TO\_UNLOAD. Further the function Ext2Fsd\-PrepareToUnload will be called. That's the place where the driver will check if it is prepared to unload already or if there exists any mounted devices.
+
+Now, when everything is okay, the driver calls IoUn\-register\-FileSystem and IoDelete\-Device. Furthermore it sets the unload function.
+
+\begin{Verbatim}
+NTSTATUS Ext2FsdPrepareToUnload (IN PFSD\_IRP\_CONTEXT IrpContext)
+{
+  //   This is only a short overview, you can find the
+  //   whole code in devctl.c
+
+  __try {
+    if (FlagOn(FsdGlobalData.Flags, FSD_UNLOAD_PENDING)) {
+      KdPrint((DRIVER_NAME ": *** Already ready to unload ***\n"));
+      Status = STATUS_ACCESS_DENIED;
+      __leave;
+    }
+
+    if (!IsListEmpty(&FsdGlobalData.VcbList)) {
+      KdPrint((DRIVER_NAME ": *** Mounted volumes exists ***\n"));
+      Status = STATUS_ACCESS_DENIED;
+      __leave;
+    }
+
+    IoUnregisterFileSystem(FsdGlobalData.DeviceObject);
+    IoDeleteDevice(FsdGlobalData.DeviceObject);
+
+    FsdGlobalData.DriverObject->DriverUnload = DriverUnload;
+    SetFlag(FsdGlobalData.Flags, FSD_UNLOAD_PENDING);
+    KdPrint((DRIVER_NAME ": Driver is ready to unload\n"));
+    Status = STATUS_SUCCESS;
+  }
+  __finally
+  {
+    IrpContext->Irp->IoStatus.Status = Status;
+    FsdCompleteRequest(IrpContext->Irp,
+        (CCHAR)(NT_SUCCESS(Status) ? IO_DISK_INCREMENT : IO_NO_INCREMENT));
+  }
+  return Status;
+}
+\end{Verbatim}
+
+%----------
+\section{DDK Kit Version}
+Because the Unload procedure differs on Windows XP compared to previous versions, there was a compiler directive to decide, which procedure has to be used.
+
+\begin{Verbatim}
+#if (VER_PRODUCTBUILD < 2600)
+   IoDeleteDevice(FsdGlobalData.DeviceObject);
+#endif
+\end{Verbatim}
+
+Even though we had the DDK Kit Version 2600, the build tool has a lower build number. So the comiler directives had to be removed that the method for Windows XP is hardcoded.
+
+The changes are documented in the code.
+
+%----------
+\section{Benefit}
+With this feature fixing minor bugs could be much more efficient. Unfortunately it is useless for bugs which cause a bluescreen.

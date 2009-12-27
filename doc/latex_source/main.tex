@@ -1,0 +1,94 @@
+\documentclass[a4paper, twoside, 11pt]{report} %LaTeX Standard
+%\documentclass[a4paper, 11pt]{report} %LaTeX Standard
+
+%%style des dokumentes
+\input{./files/inc/style}
+
+%%dokument beginnen
+\begin{document}
+
+\pagenumbering{roman}
+
+%\includepdf[pages={1-2}]{./cover/coverpage}
+%\input{./files/inc/maintitle}
+\input{./files/aufgabenstellung}
+
+\input{./files/abstract}
+\input{./files/msummary}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%%files einfügen
+\cleardoublepage
+\pagenumbering{arabic}
+\part{Requirements}
+\label{par:Requirements}
+\vspace{2cm}
+This part includes use cases and all requirements (functional and non-functional).
+
+%	\input{./files/einleitung}
+	\input{./files/vision}
+	\input{./files/suppSpec}
+	\input{./files/useCases}
+	
+\part{Technical Report}
+\label{par:technicalReport}
+\vspace{2cm}
+This part describes the technical facts.
+	
+	\input{./files/fsRecognizer}
+	\input{./files/unload}
+	\input{./files/mountunloadtools}
+	\input{./files/ext2fsd}
+	\input{./files/fsdDriver}
+
+
+\part{Implementation}
+\label{par:implementation}
+\vspace{2cm}
+This part contains code documentation.
+
+  \input{./files/implementation}
+
+
+\part{Tests}
+\label{par:tests}
+\vspace{2cm}
+This part includes the test documentation.
+	
+	\input{./files/tests}
+
+
+\part{Project Management}
+\label{par:projectManagement}
+\vspace{2cm}
+This part includes the Risk List, Project Plan, time evaluation, time variance comparison, list of used resources and personal statements.
+	
+	\input{./files/projManagIntro}
+	\input{./files/riskList}
+	\input{./files/projManag}
+	\input{./files/problems}
+	\input{./files/resources}
+	\input{./files/personalreports}
+	
+%%anhang im kolumnetitel
+\renewcommand{\chaptermark}[1]{%
+\markboth{\appendixname\ \thechapter{}: #1}{}}
+\renewcommand{\sectionmark}[1]{%
+\markright{\thesection{}: #1}{}}
+
+%% Set pdf bookmark
+\makeatletter
+\renewcommand*{\toclevel@chapter}{-1}
+\makeatother
+
+\begin{appendix}
+	\input{./files/tools}
+	\input{./files/inc/glossar}
+	\bibliography{./files/inc/references}
+%	\printindex
+\end{appendix}
+
+\end{document}

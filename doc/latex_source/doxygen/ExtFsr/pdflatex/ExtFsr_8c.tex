@@ -1,0 +1,121 @@
+\hypertarget{ExtFsr_8c}{
+\subsection{Ext\-Fsr.c File Reference}
+\label{ExtFsr_8c}\index{ExtFsr.c@{ExtFsr.c}}
+}
+
+
+\subsubsection{Detailed Description}
+Complete file system recognizer.
+
+This file contains all functions needed by file system recognizer.
+
+{\tt \#include $<$ifs/ntifs.h$>$}\par
+{\tt \#include \char`\"{}Ext\-Fsr.h\char`\"{}}\par
+\subsubsection*{Functions}
+\begin{CompactItemize}
+\item 
+NTSTATUS \hyperlink{ExtFsr_8c_a0}{Read\-Disk} (IN PDEVICE\_\-OBJECT Device\-Object, IN LONGLONG Offset, IN ULONG Length, OUT PVOID Buffer)
+\begin{CompactList}\small\item\em Reads data from physical disk into memory.\item\end{CompactList}\item 
+PEXT3\_\-SUPER\_\-BLOCK \hyperlink{ExtFsr_8c_a1}{Load\-Super\-Block} (IN PDEVICE\_\-OBJECT Device\-Object)
+\begin{CompactList}\small\item\em Loads super block from disk.\item\end{CompactList}\item 
+NTSTATUS \hyperlink{ExtFsr_8c_a2}{File\-System\-Control} (IN PDEVICE\_\-OBJECT Device\-Object, IN PIRP Irp)
+\begin{CompactList}\small\item\em Manage mount requests and loads file system drivers.\item\end{CompactList}\item 
+VOID \hyperlink{ExtFsr_8c_a3}{Ext\-Fsr\-Unload} (IN PDRIVER\_\-OBJECT Driver\-Object)
+\begin{CompactList}\small\item\em Unload function.\item\end{CompactList}\item 
+NTSTATUS \hyperlink{ExtFsr_8c_a4}{Driver\-Entry} (PDRIVER\_\-OBJECT Driver\-Object, PUNICODE\_\-STRING Registry\-Path)
+\begin{CompactList}\small\item\em Entry point of this driver.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Function Documentation}
+\index{DriverEntry@{DriverEntry}!ExtFsr.c@{ExtFsr.c}}\index{ExtFsr.c@{ExtFsr.c}!DriverEntry@{DriverEntry}}\hypertarget{ExtFsr_8c_a4}{
+\index{ExtFsr.c@{Ext\-Fsr.c}!DriverEntry@{DriverEntry}}
+\index{DriverEntry@{DriverEntry}!ExtFsr.c@{Ext\-Fsr.c}}
+\paragraph[DriverEntry]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Driver\-Entry (PDRIVER\_\-OBJECT {\em Driver\-Object}, PUNICODE\_\-STRING {\em Registry\-Path})}\hfill}
+\label{ExtFsr_8c_a4}
+
+
+Entry point of this driver.
+
+It initializes global variables and registers the file system.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Driver\-Object}]Points to the next-lower driver's device object representing the target device for the read operation. \item[{\em Registry\-Path}]Pointer to a counted Unicode string specifying the path to the driver's registry key. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the routine succeeds, it must return STATUS\_\-SUCCESS. Otherwise, it must return one of the error status values defined in ntstatus.h. \end{Desc}
+\index{ExtFsrUnload@{ExtFsrUnload}!ExtFsr.c@{ExtFsr.c}}\index{ExtFsr.c@{ExtFsr.c}!ExtFsrUnload@{ExtFsrUnload}}\hypertarget{ExtFsr_8c_a3}{
+\index{ExtFsr.c@{Ext\-Fsr.c}!ExtFsrUnload@{ExtFsrUnload}}
+\index{ExtFsrUnload@{ExtFsrUnload}!ExtFsr.c@{Ext\-Fsr.c}}
+\paragraph[ExtFsrUnload]{\setlength{\rightskip}{0pt plus 5cm}VOID Ext\-Fsr\-Unload (IN PDRIVER\_\-OBJECT {\em Driver\-Object})}\hfill}
+\label{ExtFsr_8c_a3}
+
+
+Unload function.
+
+This function cleans up reserved resources if this driver is no longer in use.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Driver\-Object}]Points to the next-lower driver's device object representing the target device for the read operation. \end{description}
+\end{Desc}
+\index{FileSystemControl@{FileSystemControl}!ExtFsr.c@{ExtFsr.c}}\index{ExtFsr.c@{ExtFsr.c}!FileSystemControl@{FileSystemControl}}\hypertarget{ExtFsr_8c_a2}{
+\index{ExtFsr.c@{Ext\-Fsr.c}!FileSystemControl@{FileSystemControl}}
+\index{FileSystemControl@{FileSystemControl}!ExtFsr.c@{Ext\-Fsr.c}}
+\paragraph[FileSystemControl]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS File\-System\-Control (IN PDEVICE\_\-OBJECT {\em Device\-Object}, IN PIRP {\em Irp})}\hfill}
+\label{ExtFsr_8c_a2}
+
+
+Manage mount requests and loads file system drivers.
+
+This function manages IRP\_\-MN\_\-MOUNT\_\-VOLUME and IRP\_\-MN\_\-LOAD\_\-FILE\_\-SYSTEM. If a ext3 file system is regocnized, it will try to load the ext3 driver. If that was not successfully, the next request of the higher level driver will try to load the ext2 file system.
+
+If ext2 and ext3 both either are loaded successfully or have failed to load, the file system recognizer unloads itself.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Device\-Object}]Points to the next-lower driver's device object representing the target device for the read operation. \item[{\em Irp}]I/O request packet. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the routine succeeds, it must return STATUS\_\-SUCCESS. Otherwise, it must return one of the error status values defined in ntstatus.h. \end{Desc}
+\index{LoadSuperBlock@{LoadSuperBlock}!ExtFsr.c@{ExtFsr.c}}\index{ExtFsr.c@{ExtFsr.c}!LoadSuperBlock@{LoadSuperBlock}}\hypertarget{ExtFsr_8c_a1}{
+\index{ExtFsr.c@{Ext\-Fsr.c}!LoadSuperBlock@{LoadSuperBlock}}
+\index{LoadSuperBlock@{LoadSuperBlock}!ExtFsr.c@{Ext\-Fsr.c}}
+\paragraph[LoadSuperBlock]{\setlength{\rightskip}{0pt plus 5cm}PEXT3\_\-SUPER\_\-BLOCK Load\-Super\-Block (IN PDEVICE\_\-OBJECT {\em Device\-Object})}\hfill}
+\label{ExtFsr_8c_a1}
+
+
+Loads super block from disk.
+
+This function allocates memory from nonpaged pool for the super block. The superblock is 1024 bytes and the sector size is 512 bytes. So we need two times the SECTOR\_\-SIZE. As an offset we also take two times SECTOR\_\-SIZE because the super block is the second block on a partition.
+
+If the call of Read\-Disk fails, the allocated memory will be freed and a null pointer will be returned. If a pointer to the buffer is returned, the allocated memory must be freed from calling function.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Device\-Object}]Device object of the mounted volume \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]PEXT3\_\-SUPER\_\-BLOCK \end{Desc}
+\index{ReadDisk@{ReadDisk}!ExtFsr.c@{ExtFsr.c}}\index{ExtFsr.c@{ExtFsr.c}!ReadDisk@{ReadDisk}}\hypertarget{ExtFsr_8c_a0}{
+\index{ExtFsr.c@{Ext\-Fsr.c}!ReadDisk@{ReadDisk}}
+\index{ReadDisk@{ReadDisk}!ExtFsr.c@{Ext\-Fsr.c}}
+\paragraph[ReadDisk]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Read\-Disk (IN PDEVICE\_\-OBJECT {\em Device\-Object}, IN LONGLONG {\em Offset}, IN ULONG {\em Length}, OUT PVOID {\em Buffer})}\hfill}
+\label{ExtFsr_8c_a0}
+
+
+Reads data from physical disk into memory.
+
+This function builds an IRP for a FSD request, calls the lower driver with this IRP and wait for the completion of this operation. The read data will be written to the Buffer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Device\-Object}]Points to the next-lower driver's device object representing the target device for the read operation. \item[{\em Offset}]Points to the offset on the disk to read from. \item[{\em Length}]Specifies the length, in bytes, of Buffer. \item[{\em Buffer}]Points to a buffer to receive data. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Status Status of the Operation \end{Desc}

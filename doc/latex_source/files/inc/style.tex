@@ -1,0 +1,135 @@
+%%Pakete auswaehlen
+\usepackage[english]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage[pdftex]{hyperref}
+\usepackage{url}
+\usepackage{here}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{pdfpages}
+\usepackage{multirow}
+\usepackage[nottoc]{tocbibind}  %literaturverzeichnis und index ins inhaltsverzeichnis
+\usepackage{ltxtable}
+\usepackage{latexsym}
+\usepackage[headinclude]{typearea}  %wenn KOMA - script auskomentieren!
+\usepackage[hang,small,bf]{caption2}
+%\usepackage{color}
+\usepackage{fancyvrb}
+\fvset{frame=single,numbers=left,fontsize=\small}
+
+%%bedruckter Bereich festlegen - wenn KOMA - script auskomentieren!
+\typearea{9}
+
+%%index erstellen
+%\usepackage{makeidx}
+\makeindex
+
+\bibliographystyle{is-plain}
+
+\pagestyle{fancy}
+
+\fancypagestyle{plain} {
+\fancyfoot{}
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+}
+
+%%twoside header options
+\renewcommand{\chaptermark}[1]{%
+\markboth{\chaptername\ \thechapter{}: #1}{}}
+\renewcommand{\sectionmark}[1]{%
+\markright{\thesection{}: #1}{}}
+\fancyfoot{}% Unten nichts
+\fancyhead[RE]{\itshape\leftmark}% Rechts auf geraden Seiten=innen
+\fancyhead[LO]{\itshape\rightmark}% Links auf ungeraden Seiten=innen
+\fancyhead[RO,LE]{\thepage}%Rechts auf ungeraden und links auf geraden Seiten
+
+%%oneside header options - display only chapters
+%\fancyfoot{}
+%\lhead{\thepage}
+%\rhead{\itshape\leftmark}
+
+%% Color settings
+\pagecolor{white} %background
+\color{black}     % text
+
+%% Attribute für das PDF-Dokument
+\hypersetup{
+	pdftitle = {Thesis Linux Filesystem Driver for Windows, ext2, ext3},
+	pdfsubject = {Thesis Linux Filesystems for Windows 2000/XP},
+	pdfkeywords = {ext2, ext3, Filesystems, Driver, Linux, Windows },
+	pdfauthor = {Michael Egli, michael.egli@hsr.ch, Marc Winiger, marc.winiger@hsr.ch},
+	colorlinks=true, 
+	linkcolor=blue, 
+	citecolor=blue, 
+	urlcolor=blue, 
+	plainpages=false
+}
+
+\newcommand{\highlight}[1]{\emph{#1}}
+\newcommand{\command}[1]{\texttt{#1}}
+
+%%additional options
+
+%set depth of toc to 2
+\setcounter{tocdepth}{1}
+
+%text on the part page
+\makeatletter
+\def\@endpart{}
+\makeatother
+
+%Sans Serif Schrift
+%\renewcommand{\familydefault}{cmss}    
+%\renewcommand{\baselinestretch}{1.5}
+
+%Doxygen
+\newenvironment{CompactList}
+{\begin{list}{}{
+  \setlength{\leftmargin}{0.5cm}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\topsep}{0pt}
+  \renewcommand{\makelabel}{}}}
+{\end{list}}
+\newenvironment{CompactItemize}
+{
+  \begin{itemize}
+  \setlength{\itemsep}{-3pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\topsep}{0pt}
+  \setlength{\partopsep}{0pt}
+}
+{\end{itemize}}
+\newcommand{\PBS}[1]{\let\temp=\\#1\let\\=\temp}
+\newlength{\tmplength}
+\newenvironment{TabularC}[1]
+{
+\setlength{\tmplength}
+     {\linewidth/(#1)-\tabcolsep*2-\arrayrulewidth*(#1+1)/(#1)}
+      \par\begin{tabular*}{\linewidth}
+             {*{#1}{|>{\PBS\raggedright\hspace{0pt}}p{\the\tmplength}}|}
+}
+{\end{tabular*}\par}
+\newcommand{\entrylabel}[1]{
+   {\parbox[b]{\labelwidth-4pt}{\makebox[0pt][l]{\textbf{#1}}\\}}}
+\newenvironment{Desc}
+{\begin{list}{}
+  {
+    \settowidth{\labelwidth}{40pt}
+    \setlength{\leftmargin}{\labelwidth}
+    \setlength{\parsep}{0pt}
+    \setlength{\itemsep}{-4pt}
+    \renewcommand{\makelabel}{\entrylabel}
+  }
+}
+{\end{list}}
+\newenvironment{Indent}
+  { \begin{list}{} {\setlength{\leftmargin}{0.5cm}}
+      \item[]\ignorespaces}
+  {\unskip\end{list}}
+

@@ -1,0 +1,40 @@
+#
+# When this file is included in an Sources file for a driver it sets TARGETPATH
+# to an appropriate value depending on witch version of Windows the driver is
+# compiled for.
+#
+# Use: !INCLUDE ddkver
+#
+
+#
+# If Windows XP DDK
+#
+!if "$(DDK_TARGET_OS)" == "WinXP"
+
+TARGETPATH=..\bin\xp\$(DDKBUILDENV)
+
+#
+# If Windows 2000 DDK
+#
+# !elseif "$(MIDL_OPTIMIZATION_NT5)" != ""
+
+# TARGETPATH=..\bin\w2k\$(DDKBUILDENV)
+
+#
+# If Windows NT 4.0 DDK
+#
+# !elseif "$(NEW_CRTS)" != ""
+
+# TARGETPATH=..\bin\nt4
+
+#
+# Put debug information in a .pdb file for both checked and free build, this is
+# default in later versions of the DDK
+#
+USE_PDB=TRUE
+!if "$(DDKBUILDENV)" == "free"
+NTDEBUG=ntsdnodbg
+NTDEBUGTYPE=both
+!endif
+
+!endif

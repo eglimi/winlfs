@@ -1,0 +1,71 @@
+%Bitte beim eintragen alphabetisch ordnen
+\chapter{Glossary}
+\label{cha:Glossary}
+
+\begin{description}
+\item[\Large{A}]
+\item[APC] ``Asynchronous Procedure Call''
+
+\item[\Large{B}]
+\hypertarget{bendian}{}
+\item[Big-Endian] refers to the most significant byte first order in which bytes of a multi-byte value (such as a 32-bit dword value) are stored. For example a value of 0x0006FC7B would be stored in a file as: 0x00, 0x06, 0xFC, 0x7B. Many Motorola processors (Macintosh) use Big-Endian. The opposite byte ordering method is called \hyperlink{lendian}{Little Endian}. 
+
+\item[BDL] ``Block Description List''.
+
+\item[\Large{C}]
+\item[CCB] ``Context Control Block'' represents an open instance of an on-disk object.
+\item[CDO] ``Control Device Objects'' represent an entire file system.
+
+\item[\Large{D}]
+\item[DCB] ``Directory Control Block'' is an internal NT file system structure in which a file system maintains state for an open instance of a directory file.
+\item[DDK] Windows Driver Development Kit. Used for developing any drivers for Windows.
+\item[DPC] ``Deferred Procedure Call''
+
+\item[\Large{E}]
+
+\item[ext2/3] ``Extended File System'' is the file system often used on Linux system. Version 3 includes journalling.
+
+\item[\Large{F}]
+\item[FAT] ``File Allocation Table'' is a file system generally used with Windows9x/Me and DOS.
+\item[FCB] ``File Control Block'' represents an on-disk object in system memory.
+\item[FDO] ``Functional Device Object'' is the root object of a storage device stack.
+
+\item[\Large{I}]
+\item[IFS] ``installable file system'' is the possibility to load additional file system drivers in Windows XP.
+\item[IRP] ``I/O request packet``. An IRP is the basic I/O Manager structure used to communicate with drivers and to allow drivers to communicate with each other. Each IRP request has a \hyperlink{major}{major} and a \hyperlink{minor}{minor} function.
+\hypertarget{major}{}
+\item[IRP Major request] Each major request can be mapped to a function to be executed on such a request. This function has to handle the \hyperlink{minor}{minor request}.
+\hypertarget{minor}{}
+\item[IRP Minor request] is a sub-request. The \hyperlink{major}{major request} decides on this value what there is to do.
+\item[IRQL] ``Interrupt Request Level''
+\item[ISR] ``Interrupt Service Routine''
+
+\item[\Large{L}]
+\item[LBN] ``Logical block number'' identifies a physical block on a disk, using a logical address rather than physical disk values (for cylinder, track, and sector). For a disk with $N$ blocks (in other words, sectors), the corresponding LBNs are numbered 0 through $(N - 1)$.
+\item[Link] A hard- or soft-link on an ext2/3 partition.
+\hypertarget{lendian}{}
+\item[Little-Endian] refers to the least significant byte first order in which bytes of a multi-byte value (such as a 32-bit dword value) are stored. For example a value 0x0006FC7B would be stored in a file as: 0x7B, 0xFC, 0x06, 0x00. Intel processors (PC) use Little-Endian. The opposite byte ordering method is called \hyperlink{bendian}{Big Endian}.
+
+\item[\Large{M}]
+\item[Magic number] Identification bytes in the super block of a ext2 or ext3 partition.
+\item[MCB] ``Map control block'' is a structure used by file systems in mapping the VBNs for a file to the corresponding LBNs on the disk. 
+\item[MDL] ``Memory Descriptor List''
+
+\item[\Large{N}]
+\item[NTFS] ``New Technology File System'' is a file system generally used with WindowsNT/2k/XP.
+
+\item[\Large{P}]
+\item[PDO] ``Physical Device Object'' are the leaves of the tree with a FDO root object.
+
+\item[\Large{P}]
+\item[RtlXxx] ``Run-Time Library routines''.
+
+\item[\Large{S}]
+\item[Super block] Second block of the partition, right after the boot block. It contains all information about the partition.
+\item[\Large{V}]
+\item[VBN] ``Virtual Block Number'' identifies a block (in other words, sector) relative to the start of a file. For a file with $N$ blocks of data, the corresponding VBNs are numbered 1 through $N$. 
+\item[VCB] ``Volume Control Block''. An internal file system structure in which a file system maintains state about a mounted volume.
+\item[VDO] ``Volume Device Objects'' represent mounted volumes.
+\item[VMM] ``Virtual Memory Manager''
+\item[VPB] ``Volume Parameter Block'' creates a logical association between a physical disk device object and a logical volume device object.
+\end{description}

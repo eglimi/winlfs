@@ -1,0 +1,81 @@
+\hypertarget{write_8c}{
+\subsection{write.c File Reference}
+\label{write_8c}\index{write.c@{write.c}}
+}
+
+
+\subsubsection{Detailed Description}
+Functions to handle IRP\_\-MJ\_\-WRITE.
+
+This file contains the functions needed for physically write down the data.
+
+{\tt \#include \char`\"{}ntifs.h\char`\"{}}\par
+{\tt \#include \char`\"{}fsd.h\char`\"{}}\par
+\subsubsection*{Functions}
+\begin{CompactItemize}
+\item 
+NTSTATUS \hyperlink{write_8c_a0}{Fsd\-Write} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context)
+\begin{CompactList}\small\item\em Dispatch Method for writing.\item\end{CompactList}\item 
+NTSTATUS \hyperlink{write_8c_a1}{Fsd\-Write\-Normal} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context)
+\begin{CompactList}\small\item\em Writes down the data to the disk.\item\end{CompactList}\item 
+NTSTATUS \hyperlink{write_8c_a2}{Fsd\-Write\-Complete} (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} Irp\-Context)
+\begin{CompactList}\small\item\em Completes the writing request for a cached file.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Function Documentation}
+\index{FsdWrite@{FsdWrite}!write.c@{write.c}}\index{write.c@{write.c}!FsdWrite@{FsdWrite}}\hypertarget{write_8c_a0}{
+\index{write.c@{write.c}!FsdWrite@{FsdWrite}}
+\index{FsdWrite@{FsdWrite}!write.c@{write.c}}
+\paragraph[FsdWrite]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Fsd\-Write (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context})}\hfill}
+\label{write_8c_a0}
+
+
+Dispatch Method for writing.
+
+This function calls \hyperlink{write_8c_a1}{Fsd\-Write\-Normal()} when IRP\_\-MN\_\-NORMAL is set or \hyperlink{write_8c_a2}{Fsd\-Write\-Complete()} when IPR\_\-MN\_\-COMPLETE is set.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Status of called Function \hyperlink{write_8c_a1}{Fsd\-Write\-Normal()} or \hyperlink{write_8c_a2}{Fsd\-Write\-Complete()} \end{Desc}
+\index{FsdWriteComplete@{FsdWriteComplete}!write.c@{write.c}}\index{write.c@{write.c}!FsdWriteComplete@{FsdWriteComplete}}\hypertarget{write_8c_a2}{
+\index{write.c@{write.c}!FsdWriteComplete@{FsdWriteComplete}}
+\index{FsdWriteComplete@{FsdWriteComplete}!write.c@{write.c}}
+\paragraph[FsdWriteComplete]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Fsd\-Write\-Complete (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context})}\hfill}
+\label{write_8c_a2}
+
+
+Completes the writing request for a cached file.
+
+\begin{Desc}
+\item[Warning:]This function is not yet implemented.\end{Desc}
+It should call Cc\-Mdl\-Write\-Complete() to free the memory descriptor lists.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Status if the completiton of writing was successful. \end{Desc}
+\index{FsdWriteNormal@{FsdWriteNormal}!write.c@{write.c}}\index{write.c@{write.c}!FsdWriteNormal@{FsdWriteNormal}}\hypertarget{write_8c_a1}{
+\index{write.c@{write.c}!FsdWriteNormal@{FsdWriteNormal}}
+\index{FsdWriteNormal@{FsdWriteNormal}!write.c@{write.c}}
+\paragraph[FsdWriteNormal]{\setlength{\rightskip}{0pt plus 5cm}NTSTATUS Fsd\-Write\-Normal (IN \hyperlink{struct__FSD__IRP__CONTEXT}{PFSD\_\-IRP\_\-CONTEXT} {\em Irp\-Context})}\hfill}
+\label{write_8c_a1}
+
+
+Writes down the data to the disk.
+
+\begin{Desc}
+\item[Warning:]This function is not yet implemented.\end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Irp\-Context}]Pointer to the context of the IRP \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Status if the data were writing down successfully. \end{Desc}

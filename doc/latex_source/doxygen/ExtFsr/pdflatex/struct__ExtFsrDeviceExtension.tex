@@ -1,0 +1,31 @@
+\hypertarget{struct__ExtFsrDeviceExtension}{
+\subsection{\_\-Ext\-Fsr\-Device\-Extension Struct Reference}
+\label{struct__ExtFsrDeviceExtension}\index{_ExtFsrDeviceExtension@{\_\-ExtFsrDeviceExtension}}
+}
+{\tt \#include $<$Ext\-Fsr.h$>$}
+
+
+
+\subsubsection{Detailed Description}
+Device extension structure.
+
+Structure to store persistent values that are needed by a later IRP request. 
+
+\subsubsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+\hypertarget{struct__ExtFsrDeviceExtension_m0}{
+\hyperlink{struct__LOAD__STATUS}{LOAD\_\-STATUS} \hyperlink{struct__ExtFsrDeviceExtension_m0}{ext3}}
+\label{struct__ExtFsrDeviceExtension_m0}
+
+\begin{CompactList}\small\item\em Stores whether ext3 driver is loaded or failed.\item\end{CompactList}\item 
+\hypertarget{struct__ExtFsrDeviceExtension_m1}{
+\hyperlink{struct__LOAD__STATUS}{LOAD\_\-STATUS} \hyperlink{struct__ExtFsrDeviceExtension_m1}{ext2}}
+\label{struct__ExtFsrDeviceExtension_m1}
+
+\begin{CompactList}\small\item\em Stores whether ext2 driver is loaded or failed.\item\end{CompactList}\item 
+\hypertarget{struct__ExtFsrDeviceExtension_m2}{
+BOOLEAN \hyperlink{struct__ExtFsrDeviceExtension_m2}{journalling}}
+\label{struct__ExtFsrDeviceExtension_m2}
+
+\begin{CompactList}\small\item\em Stores whether recognized partition has journalling or not.\item\end{CompactList}\end{CompactItemize}

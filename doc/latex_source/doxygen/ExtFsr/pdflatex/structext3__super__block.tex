@@ -1,0 +1,42 @@
+\hypertarget{structext3__super__block}{
+\subsection{ext3\_\-super\_\-block Struct Reference}
+\label{structext3__super__block}\index{ext3_super_block@{ext3\_\-super\_\-block}}
+}
+{\tt \#include $<$Ext\-Fsr.h$>$}
+
+
+
+\subsubsection{Detailed Description}
+Ext3 structure taken from linux source.
+
+Only attributes used in this driver are described. Short descriptions of the other attributes can be found in the source code. 
+
+\subsubsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+USHORT \hyperlink{structext3__super__block_m15}{s\_\-magic}
+\begin{CompactList}\small\item\em Magic signature.\item\end{CompactList}\item 
+ULONG \hyperlink{structext3__super__block_m28}{s\_\-feature\_\-compat}
+\begin{CompactList}\small\item\em Compatible feature set.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Field Documentation}
+\index{s_feature_compat@{s\_\-feature\_\-compat}!ext3_super_block@{ext3\_\-super\_\-block}}\index{ext3_super_block@{ext3\_\-super\_\-block}!s_feature_compat@{s\_\-feature\_\-compat}}\hypertarget{structext3__super__block_m28}{
+\index{ext3_super_block@{ext3\_\-super\_\-block}!s_feature_compat@{s\_\-feature\_\-compat}}
+\index{s_feature_compat@{s\_\-feature\_\-compat}!ext3_super_block@{ext3\_\-super\_\-block}}
+\paragraph[s\_\-feature\_\-compat]{\setlength{\rightskip}{0pt plus 5cm}ULONG ext3\_\-super\_\-block::s\_\-feature\_\-compat}\hfill}
+\label{structext3__super__block_m28}
+
+
+Compatible feature set.
+
+This attribute is needed to determine if there is a ext2 or ext3 partition.\index{s_magic@{s\_\-magic}!ext3_super_block@{ext3\_\-super\_\-block}}\index{ext3_super_block@{ext3\_\-super\_\-block}!s_magic@{s\_\-magic}}\hypertarget{structext3__super__block_m15}{
+\index{ext3_super_block@{ext3\_\-super\_\-block}!s_magic@{s\_\-magic}}
+\index{s_magic@{s\_\-magic}!ext3_super_block@{ext3\_\-super\_\-block}}
+\paragraph[s\_\-magic]{\setlength{\rightskip}{0pt plus 5cm}USHORT ext3\_\-super\_\-block::s\_\-magic}\hfill}
+\label{structext3__super__block_m15}
+
+
+Magic signature.
+
+This is the signature of the partition. The ext2 and ext3 partitions have 0x\-EF53 at this place.

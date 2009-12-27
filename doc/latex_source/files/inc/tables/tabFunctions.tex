@@ -1,0 +1,30 @@
+\begin{longtable}{p{2cm} X p{2cm}}
+\caption{\label{tab:tabFunctions}Detailed description of functional requirements }\\
+\textbf{Reference}	& \textbf{Function description}					&\textbf{Priority}\\
+\hline
+&&\\
+R1.1 				&Recognize ext2 partition at boot time.														&1\\
+R1.2				&Recognize ext3 partition at boot time.														&1\\
+R1.3				&Start file system drivers.																				&1\\
+
+&&\\
+R2.1				&Write file on ext2 partition.																		&1\\
+R2.2				&Write directory on ext2 partition.																&1\\
+R2.3				&Change permissions on a file, directory or link which is on a ext partition.	&2\\
+R2.4				&Create links on ext2 partition.																	&3\\
+R2.5				&Show ext2 partition preferences.																	&3\\
+R2.6				&Caching for faster writing.																			&3\\
+
+&&\\
+R3.1				&Read file on ext3 partition and read journal.										&1\\
+R3.2				&Read directory structure on ext3 partition and read journal.			&1\\
+
+&&\\
+R4.1				&Write file on ext3 partition and write journal.									&1\\
+R4.2				&Write directory on ext3 partition and write journal.							&1\\
+R4.3				&Create links on ext3 partition and write journal.								&3\\
+R4.4				&Show ext3 partition preferences.																	&3\\
+R4.5				&Read journal an recover errors.																	&3\\
+R4.6				&Caching for faster writing.																			&3\\
+
+\end{longtable}

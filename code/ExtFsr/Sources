@@ -1,0 +1,14 @@
+INCLUDES=$(BASEDIR)\inc;.
+
+# Name and type of the output file:
+TARGETNAME=ExtFsr
+TARGETTYPE=DRIVER
+TARGETPATH=.\$(DDKBUILDENV)
+
+# Creates a file used by Visual Studio to navigate the source code.
+BROWSER_INFO=TRUE
+
+RCNOFONTMAP=TRUE
+
+# The source code:
+SOURCES=ExtFsr.c

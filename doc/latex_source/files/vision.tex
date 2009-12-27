@@ -1,0 +1,63 @@
+\chapter{Vision}
+\label{cha:Vision}
+
+%----------
+\section{Introduction}
+This chapter summarizes high level goals and gives a brief product overview.
+
+%----------
+\section{Purpose of this thesis}
+Access to ext2 and ext3 Linux partitions is not provided by Windows. But Windows XP has the possibility to load ``installable file system'' drivers (IFS).
+
+The goal of this thesis is to develop a driver to access Linux file systems under a Windows XP System. The driver will be developed based on the ext2 read-only driver from a previous thesis. We envision to implement read and write access for ext2 and ext3. That includes the journalling functionality in ext3. 
+
+The highest priority has writing support and journalling, which is a part of ext3. An optional goal will be implementing a good caching to increase the speed. We aim to make the driver robust and easy to use.
+
+%----------
+\section{Positioning}
+Existing ext file system drivers do not have writing support, does not support ext3 journalling or don't run in a Windows XP environment. We aim to enhance an existing ext2 read only driver, which was developed during a previous thesis. The main disadvantages of this driver are:
+\begin{itemize}
+\item Only read functionality is implemented.
+\item No ext3 support.
+\item The file system recognizer don't recognize ext partitions at start up.
+\end{itemize}
+
+The driver can be used by everyone who wants to have read and write access to his Linux file systems on a Windows XP Platform. In contrast to other products, this driver will support all the needed features to have full read and write access to ext file systems and probably other Linux file systems later.
+
+%---
+\subsection{Problem Statement}
+\LTXtable{\linewidth}{./files/inc/tables/visionProblemStmt}
+
+%----------
+\section{Stakeholder Description}
+%---
+\subsection{Key High-Level Goals}
+\LTXtable{\linewidth}{./files/inc/tables/visionHighlevelGoals}
+
+%---
+\subsection{User-Level Goals}
+\begin{itemize}
+\item Windows User: Create, modify, delete, copy, move files and directories.
+\item Administrator: Mount/unmount partitions. Manage file permissions and permission mapping.
+\end{itemize}
+
+%---
+\subsection{Alternatives and Competition}
+\LTXtable{\linewidth}{./files/inc/tables/visionSimilarProducts}
+
+%----------
+\section{Product Overview}
+%---
+\subsection{Product Perspective}
+The driver is meant to be used for a Windows XP environment with an existing ext2/ext3 partition. It is assumed that the installation and configuration will be done by a person which has fairly good knowledge about the Windows and Linux operation systems.
+
+\subsection{Summary of Benefits}
+\LTXtable{\linewidth}{./files/inc/tables/visionBenefits}
+
+%---
+\subsection{Assumptions and Dependencies}
+\begin{itemize}
+  \item Windows XP as a runtime environment
+  \item existing ext2/ext3 partition
+\end{itemize}
+

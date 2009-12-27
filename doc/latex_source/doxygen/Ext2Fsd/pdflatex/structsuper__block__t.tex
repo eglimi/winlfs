@@ -1,0 +1,53 @@
+\hypertarget{structsuper__block__t}{
+\subsection{super\_\-block\_\-t Struct Reference}
+\label{structsuper__block__t}\index{super_block_t@{super\_\-block\_\-t}}
+}
+{\tt \#include $<$ext2.h$>$}
+
+
+
+\subsubsection{Detailed Description}
+Super block structure.
+
+This structure represents the super block in memory.
+
+Block number 1 of a block group. 
+
+\subsubsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+\hypertarget{structsuper__block__t_m0}{
+\_\-u32 \hyperlink{structsuper__block__t_m0}{s\_\-inodes\_\-count}}
+\label{structsuper__block__t_m0}
+
+\begin{CompactList}\small\item\em Total number of inodes.\item\end{CompactList}\item 
+\hypertarget{structsuper__block__t_m1}{
+\_\-u32 \hyperlink{structsuper__block__t_m1}{s\_\-blocks\_\-count}}
+\label{structsuper__block__t_m1}
+
+\begin{CompactList}\small\item\em Filesystem size in blocks.\item\end{CompactList}\item 
+\hypertarget{structsuper__block__t_m8}{
+\_\-u32 \hyperlink{structsuper__block__t_m8}{s\_\-blocks\_\-per\_\-group}}
+\label{structsuper__block__t_m8}
+
+\begin{CompactList}\small\item\em Number of blocks per group.\item\end{CompactList}\item 
+\hypertarget{structsuper__block__t_m10}{
+\_\-u32 \hyperlink{structsuper__block__t_m10}{s\_\-inodes\_\-per\_\-group}}
+\label{structsuper__block__t_m10}
+
+\begin{CompactList}\small\item\em Number of inodes per group $\ast$/.\item\end{CompactList}\item 
+\_\-u16 \hyperlink{structsuper__block__t_m15}{s\_\-magic}
+\begin{CompactList}\small\item\em Magic signature.\item\end{CompactList}\end{CompactItemize}
+
+
+\subsubsection{Field Documentation}
+\index{s_magic@{s\_\-magic}!super_block_t@{super\_\-block\_\-t}}\index{super_block_t@{super\_\-block\_\-t}!s_magic@{s\_\-magic}}\hypertarget{structsuper__block__t_m15}{
+\index{super_block_t@{super\_\-block\_\-t}!s_magic@{s\_\-magic}}
+\index{s_magic@{s\_\-magic}!super_block_t@{super\_\-block\_\-t}}
+\paragraph[s\_\-magic]{\setlength{\rightskip}{0pt plus 5cm}\_\-u16 super\_\-block\_\-t::s\_\-magic}\hfill}
+\label{structsuper__block__t_m15}
+
+
+Magic signature.
+
+This is the signature of the partition. The ext2 and ext3 partitions have 0x\-EF53 at this place.
